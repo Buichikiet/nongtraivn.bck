@@ -1,0 +1,5436 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>🌱 Nông Trại Online – Tải APK Miễn Phí</title>
+<meta name="description" content="Tải game Nông Trại Online miễn phí cho Android. Game nông trại pixel đa người chơi - Made by Bùi Chí Kiệt.">
+<meta name="theme-color" content="#5fb84a">
+<meta property="og:title" content="🌱 Nông Trại Online – Tải APK Miễn Phí">
+<meta property="og:description" content="Game nông trại pixel đáng yêu - Trồng cây, nuôi cá, xây nhà, kết bạn cùng hàng ngàn game thủ Việt!">
+<link rel="icon" type="image/svg+xml" href="logo-nongtraivn.svg">
+<link rel="manifest" href="/manifest.json">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;700;900&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --leaf: #4caf50;
+  --leaf-dark: #2e7d32;
+  --leaf-light: #81c784;
+  --sun: #ffd54f;
+  --sun-deep: #ffb300;
+  --sky: #87ceeb;
+  --sky-light: #b3e5fc;
+  --pink: #ff8a95;
+  --pink-deep: #e91e63;
+  --orange: #ff7043;
+  --brown: #6d4c41;
+  --cream: #fff8e1;
+  --earth: #8d6e63;
+  --grass: #aed581;
+  --gold: #ffd700;
+  --gold-deep: #ffaa00;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  font-family: 'Nunito', 'Quicksand', sans-serif;
+  background: linear-gradient(180deg, #87ceeb 0%, #b3e5fc 30%, #c8e6c9 60%, #aed581 100%);
+  background-attachment: fixed;
+  color: #3e2723;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* ============ SCROLLBAR VIP ============ */
+::-webkit-scrollbar { width: 14px; }
+::-webkit-scrollbar-track {
+  background: linear-gradient(180deg, #fff8e1, #ffecb3);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--leaf), var(--leaf-dark), var(--leaf));
+  border-radius: 8px;
+  border: 2px solid #fff8e1;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--gold), var(--orange), var(--gold));
+}
+
+/* ============ SCENE BACKGROUND ============ */
+.scene {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  overflow: hidden;
+}
+
+.sun {
+  position: absolute;
+  top: 60px;
+  right: 80px;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, #fff176, #ffd54f 50%, #ffb300 80%, transparent);
+  border-radius: 50%;
+  box-shadow: 0 0 60px #ffd54f, 0 0 120px #ffb300;
+  animation: sunGlow 4s ease-in-out infinite;
+}
+.sun::before, .sun::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 200%; height: 200%;
+  background: conic-gradient(from 0deg, transparent 0%, rgba(255,235,59,0.3) 5%, transparent 10%);
+  transform: translate(-50%, -50%);
+  animation: sunRays 20s linear infinite;
+  border-radius: 50%;
+}
+.sun::after {
+  animation-duration: 30s;
+  animation-direction: reverse;
+  opacity: 0.5;
+}
+@keyframes sunRays {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+@keyframes sunGlow {
+  0%, 100% { transform: scale(1); opacity: 0.95; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+
+.mountains {
+  position: absolute;
+  bottom: 30%; left: 0; right: 0; height: 200px;
+  background:
+    linear-gradient(135deg, transparent 50%, #81c784 50%) 0 0/80px 100% no-repeat,
+    linear-gradient(135deg, transparent 50%, #66bb6a 50%) 40px 0/100px 100% no-repeat,
+    linear-gradient(135deg, transparent 50%, #81c784 50%) 140px 0/120px 100% no-repeat,
+    linear-gradient(135deg, transparent 50%, #66bb6a 50%) 260px 0/90px 100% no-repeat,
+    linear-gradient(135deg, transparent 50%, #81c784 50%) 350px 0/110px 100% no-repeat;
+  opacity: 0.6;
+}
+
+.grass-field {
+  position: absolute;
+  bottom: 0; left: 0; right: 0; height: 30%;
+  background: linear-gradient(180deg, transparent, #7cb342 30%, #558b2f 100%);
+}
+
+.cloud {
+  position: absolute;
+  background: #fff;
+  border-radius: 50px;
+  opacity: 0.92;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+}
+.cloud::before, .cloud::after {
+  content: ''; position: absolute;
+  background: #fff; border-radius: 50%;
+}
+.cloud-1 { width: 120px; height: 40px; top: 80px; left: -10%; animation: drift 50s linear infinite; }
+.cloud-1::before { width: 60px; height: 60px; top: -25px; left: 20px; }
+.cloud-1::after { width: 50px; height: 50px; top: -15px; left: 60px; }
+.cloud-2 { width: 100px; height: 35px; top: 160px; left: -20%; animation: drift 70s linear infinite 10s; }
+.cloud-2::before { width: 50px; height: 50px; top: -20px; left: 15px; }
+.cloud-2::after { width: 40px; height: 40px; top: -10px; left: 50px; }
+.cloud-3 { width: 140px; height: 45px; top: 220px; left: -30%; animation: drift 60s linear infinite 25s; }
+.cloud-3::before { width: 70px; height: 70px; top: -30px; left: 25px; }
+.cloud-3::after { width: 55px; height: 55px; top: -20px; left: 70px; }
+@keyframes drift {
+  0% { transform: translateX(-30vw); }
+  100% { transform: translateX(130vw); }
+}
+
+/* Lá rơi */
+.leaves { position: fixed; inset: 0; z-index: -2; pointer-events: none; overflow: hidden; }
+.leaf {
+  position: absolute;
+  width: 24px; height: 24px;
+  font-size: 22px;
+  animation: leafFall linear infinite;
+  opacity: 0.85;
+}
+@keyframes leafFall {
+  0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(110vh) translateX(100px) rotate(720deg); opacity: 0; }
+}
+.butterfly {
+  position: fixed;
+  font-size: 28px;
+  z-index: -2;
+  pointer-events: none;
+  animation: flyAcross linear infinite;
+}
+@keyframes flyAcross {
+  0% { transform: translate(-10vw, 50vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translate(110vw, calc(50vh + var(--wave))) rotate(360deg); opacity: 0; }
+}
+
+/* ============ TOP ACTION BAR (NÚT VIP TRÊN CÙNG) ============ */
+.top-bar {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  pointer-events: none;
+}
+
+.top-btn {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 50px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.top-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+  transition: left 0.6s;
+}
+
+.top-btn:hover::before { left: 100%; }
+
+.top-btn-info {
+  background: linear-gradient(135deg, var(--gold), var(--orange));
+  color: #fff;
+  border: 2px solid #fff;
+  box-shadow: 0 6px 20px rgba(255, 152, 0, 0.4), 0 0 0 3px var(--gold);
+  animation: infoPulse 2s ease-in-out infinite;
+}
+
+@keyframes infoPulse {
+  0%, 100% { box-shadow: 0 6px 20px rgba(255, 152, 0, 0.4), 0 0 0 3px var(--gold); }
+  50% { box-shadow: 0 6px 30px rgba(255, 152, 0, 0.7), 0 0 0 6px rgba(255, 152, 0, 0.3); }
+}
+
+.top-btn-info:hover {
+  transform: translateY(-3px) scale(1.05);
+}
+
+.top-btn-info .badge {
+  position: absolute;
+  top: -6px; right: -6px;
+  background: var(--pink-deep);
+  color: #fff;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-weight: 800;
+  border: 2px solid #fff;
+  animation: badgeShake 1.5s ease-in-out infinite;
+}
+
+@keyframes badgeShake {
+  0%, 100% { transform: rotate(0); }
+  25% { transform: rotate(-10deg); }
+  75% { transform: rotate(10deg); }
+}
+
+.top-btn-music {
+  background: linear-gradient(135deg, var(--leaf), var(--leaf-dark));
+  color: #fff;
+  border: 2px solid #fff;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.top-btn-music.playing {
+  background: linear-gradient(135deg, var(--pink-deep), var(--orange));
+  animation: musicPlaying 0.8s ease-in-out infinite;
+}
+
+@keyframes musicPlaying {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.top-btn-music .music-note {
+  position: absolute;
+  font-size: 16px;
+  opacity: 0;
+}
+
+.top-btn-music.playing .music-note-1 {
+  animation: noteFloat 2s ease-out infinite;
+}
+.top-btn-music.playing .music-note-2 {
+  animation: noteFloat 2s ease-out infinite 0.5s;
+}
+.top-btn-music.playing .music-note-3 {
+  animation: noteFloat 2s ease-out infinite 1s;
+}
+
+@keyframes noteFloat {
+  0% { transform: translate(0, 0); opacity: 1; }
+  100% { transform: translate(20px, -30px); opacity: 0; }
+}
+
+/* ============ MODAL (POPUP THÔNG TIN) ============ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+}
+
+.modal-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal {
+  background: linear-gradient(135deg, #fff8e1 0%, #fff 50%, #e8f5e9 100%);
+  border-radius: 32px;
+  padding: 32px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.4), 0 0 0 4px var(--gold), 0 0 0 8px rgba(255,215,0,0.3);
+  transform: scale(0.7) translateY(50px);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-overlay.show .modal {
+  transform: scale(1) translateY(0);
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: linear-gradient(135deg, #ff5252, #d50000);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(213, 0, 0, 0.4);
+  transition: all 0.3s;
+  z-index: 10;
+}
+
+.modal-close:hover {
+  transform: rotate(90deg) scale(1.1);
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 3px dashed var(--leaf);
+}
+
+.modal-avatar {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, var(--leaf), var(--leaf-light));
+  border-radius: 50%;
+  margin: 0 auto 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px;
+  border: 5px solid #fff;
+  box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+  animation: avatarPulse 2s ease-in-out infinite;
+}
+
+@keyframes avatarPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.modal-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--leaf-dark);
+  margin-bottom: 4px;
+}
+
+.modal-subtitle {
+  font-size: 14px;
+  color: var(--brown);
+  font-weight: 600;
+}
+
+.modal-section {
+  margin-bottom: 20px;
+}
+
+.modal-section-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--orange);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #ffe0b2;
+}
+
+.modal-info-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: #fff;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  transition: all 0.2s;
+  border-left: 4px solid transparent;
+}
+
+.modal-info-row:hover {
+  background: #fff8e1;
+  transform: translateX(4px);
+}
+
+.modal-info-row.bank { border-left-color: var(--sun-deep); }
+.modal-info-row.discord { border-left-color: #5865F2; }
+.modal-info-row.zalo { border-left-color: #0068ff; }
+.modal-info-row.facebook { border-left-color: #1877f2; }
+.modal-info-row.apk { border-left-color: var(--leaf); }
+.modal-info-row.web { border-left-color: var(--orange); }
+
+.modal-info-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: #fff8e1;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.modal-info-label {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #8d6e63;
+  margin-bottom: 2px;
+}
+
+.modal-info-value {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #3e2723;
+  word-break: break-all;
+}
+
+.modal-info-value a {
+  color: var(--leaf-dark);
+  text-decoration: none;
+}
+
+.modal-info-value a:hover {
+  text-decoration: underline;
+}
+
+.modal-cta {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--leaf), var(--leaf-dark));
+  color: #fff;
+  text-align: center;
+  border-radius: 16px;
+  text-decoration: none;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  margin-top: 12px;
+  box-shadow: 0 6px 0 var(--leaf-dark), 0 8px 20px rgba(76, 175, 80, 0.4);
+  transition: all 0.15s;
+}
+
+.modal-cta:hover {
+  transform: translateY(2px);
+  box-shadow: 0 4px 0 var(--leaf-dark), 0 6px 16px rgba(76, 175, 80, 0.5);
+}
+
+.modal-cta:active {
+  transform: translateY(6px);
+}
+
+/* ============ NAVBAR ============ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 90;
+  padding: 12px 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
+  backdrop-filter: blur(12px);
+  border-bottom: 3px solid var(--leaf);
+  box-shadow: 0 4px 20px rgba(76, 175, 80, 0.2);
+}
+
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--leaf-dark);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.3s;
+}
+.logo:hover { transform: scale(1.05) rotate(-2deg); }
+.logo-icon { width: 40px; height: 40px; border-radius: 10px; animation: logoWiggle 3s ease-in-out infinite; display: inline-block; object-fit: cover; }
+@keyframes logoWiggle {
+  0%, 100% { transform: rotate(-5deg) scale(1); }
+  50% { transform: rotate(5deg) scale(1.05); }
+}
+.logo-text .highlight {
+  background: linear-gradient(45deg, var(--orange), var(--pink-deep));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-links { display: flex; gap: 24px; }
+.nav-links a {
+  color: #5d4037;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+  transition: all 0.3s;
+  position: relative;
+  padding: 6px 0;
+}
+.nav-links a::after {
+  content: '🌱';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  font-size: 14px;
+  transition: transform 0.3s;
+}
+.nav-links a:hover { color: var(--leaf-dark); transform: translateY(-2px); }
+.nav-links a:hover::after { transform: translateX(-50%) scale(1); }
+
+/* ============ HERO ============ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 140px 20px 60px;
+  position: relative;
+}
+
+.hero-content { max-width: 950px; width: 100%; text-align: center; }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  background: linear-gradient(135deg, #fff8e1, #ffecb3);
+  border: 2px dashed var(--sun-deep);
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--brown);
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(255, 179, 0, 0.3);
+  animation: badgeBounce 2s ease-in-out infinite;
+}
+@keyframes badgeBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.hero-logo {
+  font-size: clamp(100px, 18vw, 160px);
+  margin-bottom: 16px;
+  display: inline-block;
+  animation: logoSpin 6s ease-in-out infinite;
+  filter: drop-shadow(0 8px 16px rgba(76, 175, 80, 0.4));
+  cursor: pointer;
+}
+.hero-logo:hover { animation: logoSpin 1s linear infinite; }
+@keyframes logoSpin {
+  0%, 100% { transform: rotate(-10deg) scale(1); }
+  50% { transform: rotate(10deg) scale(1.1); }
+}
+
+.hero-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: clamp(36px, 7vw, 64px);
+  line-height: 1.1;
+  margin-bottom: 16px;
+  color: var(--leaf-dark);
+  text-shadow: 3px 3px 0 var(--sun), 6px 6px 0 rgba(76, 175, 80, 0.2);
+  font-weight: 700;
+}
+.hero-title .accent {
+  color: var(--orange);
+  text-shadow: 3px 3px 0 var(--sun);
+  display: inline-block;
+  animation: wordJump 2s ease-in-out infinite;
+}
+@keyframes wordJump {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-6px) rotate(2deg); }
+}
+
+.hero-subtitle {
+  font-size: clamp(15px, 2vw, 19px);
+  color: #5d4037;
+  margin-bottom: 32px;
+  line-height: 1.6;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 600;
+}
+.hero-subtitle b {
+  color: var(--pink-deep);
+  background: linear-gradient(180deg, transparent 60%, var(--sun) 60%);
+  padding: 0 4px;
+}
+
+/* ============ STATS ============ */
+.stats-bar {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 28px 0 40px;
+}
+
+.stat-card {
+  background: #fff;
+  border: 3px solid;
+  border-radius: 20px;
+  padding: 18px 24px;
+  min-width: 170px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  animation: shine 3s infinite;
+}
+@keyframes shine {
+  0% { left: -100%; }
+  50%, 100% { left: 200%; }
+}
+.stat-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+.stat-card.online { border-color: var(--leaf); background: linear-gradient(135deg, #fff, #e8f5e9); }
+.stat-card.visits { border-color: var(--pink); background: linear-gradient(135deg, #fff, #fce4ec); }
+.stat-card.downloads { border-color: var(--sun-deep); background: linear-gradient(135deg, #fff, #fff8e1); }
+
+.stat-icon {
+  font-size: 30px;
+  margin-bottom: 4px;
+  display: inline-block;
+  animation: iconBounce 2s ease-in-out infinite;
+}
+.stat-card.online .stat-icon { animation-delay: 0s; }
+.stat-card.visits .stat-icon { animation-delay: 0.3s; }
+.stat-card.downloads .stat-icon { animation-delay: 0.6s; }
+@keyframes iconBounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-4px) scale(1.1); }
+}
+
+.stat-value {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+}
+.stat-card.online .stat-value { color: var(--leaf-dark); }
+.stat-card.visits .stat-value { color: var(--pink-deep); }
+.stat-card.downloads .stat-value { color: var(--orange); }
+
+.stat-label {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 6px;
+  color: #8d6e63;
+}
+
+.live-dot {
+  display: inline-block;
+  width: 10px; height: 10px;
+  background: #f44336;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: middle;
+  animation: liveBlink 1.5s ease-in-out infinite;
+  box-shadow: 0 0 0 0 rgba(244, 67, 54, 0.7);
+}
+@keyframes liveBlink {
+  0% { box-shadow: 0 0 0 0 rgba(244, 67, 54, 0.7); }
+  70% { box-shadow: 0 0 0 8px rgba(244, 67, 54, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(244, 67, 54, 0); }
+}
+
+/* ============ DOWNLOAD BUTTONS ============ */
+.dl-btn-mega {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 36px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: clamp(15px, 2vw, 20px);
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, var(--leaf), var(--leaf-dark));
+  border: none;
+  border-radius: 60px;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  margin: 8px;
+  box-shadow:
+    0 6px 0 var(--leaf-dark),
+    0 8px 20px rgba(76, 175, 80, 0.4);
+  transition: all 0.15s;
+}
+.dl-btn-mega::after {
+  content: '';
+  position: absolute;
+  top: 8px; left: 20px; right: 20px;
+  height: 40%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.4), transparent);
+  border-radius: 30px 30px 0 0;
+  pointer-events: none;
+}
+.dl-btn-mega:hover {
+  transform: translateY(2px);
+  box-shadow: 0 4px 0 var(--leaf-dark), 0 6px 16px rgba(76, 175, 80, 0.5);
+}
+.dl-btn-mega:active {
+  transform: translateY(6px);
+  box-shadow: 0 0 0 var(--leaf-dark), 0 2px 8px rgba(76, 175, 80, 0.3);
+}
+.dl-btn-discord {
+  background: linear-gradient(135deg, #5865F2, #4752c4);
+  box-shadow: 0 6px 0 #3c45c4, 0 8px 20px rgba(88, 101, 242, 0.4);
+}
+.dl-btn-discord:hover { box-shadow: 0 4px 0 #3c45c4, 0 6px 16px rgba(88, 101, 242, 0.5); }
+.dl-btn-discord:active { box-shadow: 0 0 0 #3c45c4, 0 2px 8px rgba(88, 101, 242, 0.3); }
+.dl-btn-web {
+  background: linear-gradient(135deg, var(--sun-deep), var(--orange));
+  box-shadow: 0 6px 0 #e65100, 0 8px 20px rgba(255, 152, 0, 0.4);
+}
+.dl-btn-web:hover { box-shadow: 0 4px 0 #e65100, 0 6px 16px rgba(255, 152, 0, 0.5); }
+.dl-btn-web:active { box-shadow: 0 0 0 #e65100, 0 2px 8px rgba(255, 152, 0, 0.3); }
+
+/* ============ SECTIONS ============ */
+.section {
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+.section-wood {
+  background: #fff8e1;
+  border-radius: 40px 40px 0 0;
+  border-top: 6px solid var(--leaf);
+  border-bottom: 6px solid var(--leaf);
+  position: relative;
+}
+.section-wood::before {
+  content: '';
+  position: absolute;
+  top: -6px; left: 0; right: 0; height: 30px;
+  background: repeating-linear-gradient(90deg, var(--brown) 0, var(--brown) 80px, #8d6e63 80px, #8d6e63 160px);
+  border-radius: 40px 40px 0 0;
+}
+.section-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: clamp(28px, 5vw, 44px);
+  text-align: center;
+  margin-bottom: 16px;
+  color: var(--leaf-dark);
+  font-weight: 700;
+  text-shadow: 2px 2px 0 var(--sun);
+}
+.section-title .accent { color: var(--orange); display: inline-block; }
+.section-title .deco {
+  display: inline-block;
+  margin: 0 8px;
+  animation: spin 6s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 2px 8px rgba(255, 152, 0, 0.4); }
+  50% { transform: scale(1.05); box-shadow: 0 4px 16px rgba(255, 152, 0, 0.7); }
+}
+.section-sub {
+  text-align: center;
+  color: #5d4037;
+  margin-bottom: 48px;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+/* ============ FEATURE CARDS ============ */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+.feature-card {
+  background: #fff;
+  border-radius: 24px;
+  padding: 28px 24px;
+  text-align: center;
+  border: 3px solid transparent;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+.feature-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, var(--leaf-light), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.feature-card:hover {
+  transform: translateY(-8px) rotate(-1deg);
+  border-color: var(--leaf);
+  box-shadow: 0 16px 30px rgba(76, 175, 80, 0.25);
+}
+.feature-card:hover::before { opacity: 0.4; }
+.feature-icon {
+  font-size: 64px;
+  margin-bottom: 12px;
+  display: inline-block;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+  transition: transform 0.3s;
+}
+.feature-card:hover .feature-icon {
+  transform: scale(1.15) rotate(-10deg);
+  animation: wiggle 0.6s ease-in-out;
+}
+@keyframes wiggle {
+  0%, 100% { transform: scale(1.15) rotate(-10deg); }
+  25% { transform: scale(1.15) rotate(10deg); }
+  75% { transform: scale(1.15) rotate(-15deg); }
+}
+.feature-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--leaf-dark);
+  position: relative;
+}
+.feature-desc {
+  font-size: 14px;
+  color: #6d4c41;
+  line-height: 1.6;
+  position: relative;
+}
+
+/* ============ ADMIN SECTION ============ */
+.admin-section {
+  background: linear-gradient(135deg, #fff8e1, #ffecb3);
+  padding: 80px 20px;
+  position: relative;
+}
+.admin-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 20px;
+  background-image:
+    radial-gradient(circle at 30px 10px, var(--brown) 8px, transparent 8px),
+    radial-gradient(circle at 90px 10px, var(--brown) 8px, transparent 8px);
+  background-size: 120px 20px;
+  background-repeat: repeat-x;
+}
+.admin-card {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 32px;
+  padding: 40px 32px;
+  border: 4px solid var(--leaf);
+  box-shadow: 0 16px 40px rgba(76, 175, 80, 0.2);
+  position: relative;
+}
+.admin-card::before {
+  content: '👨‍🌾';
+  position: absolute;
+  top: -30px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 60px;
+  background: #fff;
+  border: 4px solid var(--leaf);
+  border-radius: 50%;
+  padding: 4px;
+  width: 80px; height: 80px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+}
+.admin-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 32px;
+  align-items: start;
+  margin-top: 24px;
+}
+.qr-box {
+  background: linear-gradient(135deg, #fff8e1, #fff);
+  border: 3px dashed var(--orange);
+  border-radius: 24px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(255, 152, 0, 0.15);
+}
+.qr-image {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  aspect-ratio: 1;
+  background: #fff;
+  border-radius: 16px;
+  margin: 0 auto;
+  display: block;
+  border: 2px solid var(--leaf);
+}
+.qr-label {
+  margin-top: 12px;
+  font-weight: 800;
+  color: var(--brown);
+  font-size: 14px;
+}
+.qr-label b { color: var(--pink-deep); font-size: 16px; }
+
+.admin-info { display: flex; flex-direction: column; gap: 16px; }
+.admin-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+  background: linear-gradient(135deg, #fff, #f1f8e9);
+  border-radius: 16px;
+  border-left: 5px solid var(--leaf);
+  transition: all 0.3s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+.admin-row:hover {
+  transform: translateX(8px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+.admin-row.bank { border-left-color: var(--sun-deep); background: linear-gradient(135deg, #fff, #fff8e1); }
+.admin-row.discord { border-left-color: #5865F2; background: linear-gradient(135deg, #fff, #ede7f6); }
+.admin-row.zalo { border-left-color: #0068ff; background: linear-gradient(135deg, #fff, #e3f2fd); }
+.admin-row.facebook { border-left-color: #1877f2; background: linear-gradient(135deg, #fff, #e3f2fd); }
+
+.admin-icon {
+  font-size: 32px;
+  width: 50px; height: 50px;
+  display: flex; align-items: center; justify-content: center;
+  background: #fff;
+  border-radius: 12px;
+  border: 2px solid currentColor;
+  flex-shrink: 0;
+}
+.admin-row.bank .admin-icon { color: var(--sun-deep); }
+.admin-row.discord .admin-icon { color: #5865F2; }
+.admin-row.zalo .admin-icon { color: #0068ff; }
+.admin-row.facebook .admin-icon { color: #1877f2; }
+.admin-row:not(.bank):not(.discord):not(.zalo):not(.facebook) .admin-icon { color: var(--leaf); }
+
+.admin-text { flex: 1; }
+.admin-label {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #8d6e63;
+  margin-bottom: 2px;
+}
+.admin-value {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #3e2723;
+  word-break: break-all;
+}
+.admin-value small {
+  display: block;
+  font-family: 'Nunito', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #6d4c41;
+  margin-top: 2px;
+}
+
+.copy-btn {
+  background: var(--leaf);
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 12px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-block;
+}
+.copy-btn:hover { background: var(--leaf-dark); transform: scale(1.05); }
+.copy-btn:active { transform: scale(0.95); }
+.copy-btn.fb { background: #1877f2; }
+.copy-btn.fb:hover { background: #1565c0; }
+
+/* ============ INFO GRID ============ */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 32px;
+}
+.info-item {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px 20px;
+  border-top: 4px solid var(--leaf);
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+.info-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(76, 175, 80, 0.2);
+}
+.info-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--leaf);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.info-value {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #3e2723;
+}
+
+/* ============ STEPS ============ */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 32px;
+}
+.step {
+  background: #fff;
+  border-radius: 24px;
+  padding: 28px 22px 22px;
+  position: relative;
+  border: 3px solid var(--sun);
+  transition: all 0.3s;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+}
+.step:hover {
+  transform: translateY(-6px) rotate(1deg);
+  box-shadow: 0 12px 24px rgba(255, 179, 0, 0.3);
+}
+.step-num {
+  position: absolute;
+  top: -20px; left: 22px;
+  background: linear-gradient(135deg, var(--orange), var(--pink-deep));
+  color: #fff;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  box-shadow: 0 6px 14px rgba(255, 112, 67, 0.5);
+  border: 3px solid #fff;
+}
+.step-icon {
+  font-size: 48px;
+  margin: 8px 0 12px;
+  display: inline-block;
+  animation: iconBounce 2.5s ease-in-out infinite;
+}
+.step-title {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: var(--orange);
+}
+.step-desc {
+  font-size: 14px;
+  color: #6d4c41;
+  line-height: 1.5;
+}
+
+/* ============ CTA ============ */
+.cta-section { text-align: center; padding: 80px 20px; }
+.cta-box {
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 48px 32px;
+  background: linear-gradient(135deg, #fff8e1, #ffecb3);
+  border: 4px dashed var(--orange);
+  border-radius: 32px;
+  box-shadow: 0 16px 40px rgba(255, 152, 0, 0.2);
+  position: relative;
+}
+.cta-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: clamp(24px, 4vw, 36px);
+  margin-bottom: 16px;
+  color: var(--leaf-dark);
+}
+.cta-sub { color: #5d4037; margin-bottom: 32px; font-size: 16px; font-weight: 600; }
+.cta-deco {
+  font-size: 50px;
+  margin-bottom: 16px;
+  display: inline-block;
+  animation: logoWiggle 2s ease-in-out infinite;
+}
+
+/* ============ FOOTER ============ */
+.footer {
+  padding: 40px 20px 20px;
+  background: linear-gradient(180deg, #558b2f, #33691e);
+  color: #fff;
+  text-align: center;
+  position: relative;
+}
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 20px;
+  background-image:
+    radial-gradient(circle at 30px 0, #fff 12px, transparent 12px),
+    radial-gradient(circle at 90px 0, #fff 12px, transparent 12px);
+  background-repeat: repeat-x;
+  background-size: 120px 20px;
+}
+.footer-content { max-width: 1200px; margin: 0 auto; padding-top: 16px; }
+.footer-logo { font-family: 'Fredoka', sans-serif; font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+.footer-links { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin: 16px 0; }
+.footer-link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.15);
+  transition: all 0.3s;
+}
+.footer-link:hover { background: rgba(255,255,255,0.3); transform: translateY(-2px); }
+.footer-copy { margin-top: 20px; opacity: 0.8; font-size: 13px; font-weight: 600; }
+.footer-author { margin-top: 8px; font-size: 14px; font-weight: 700; }
+
+/* ============ NEWS TICKER ============ */
+.news-ticker {
+  position: relative;
+  background: linear-gradient(90deg, #1e40af 0%, #7c3aed 50%, #db2777 100%);
+  color: #fff;
+  padding: 10px 0;
+  overflow: hidden;
+  border-top: 3px solid #fbbf24;
+  border-bottom: 3px solid #fbbf24;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
+}
+.news-ticker::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+.news-ticker-label {
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: #1e293b;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-left: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 3px 8px rgba(245, 158, 11, 0.5);
+  z-index: 2;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+.news-ticker-label .dot {
+  width: 8px;
+  height: 8px;
+  background: #dc2626;
+  border-radius: 50%;
+  animation: liveDot 1.2s ease-in-out infinite;
+}
+@keyframes liveDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+.news-ticker-content {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
+}
+.news-ticker-track {
+  display: flex;
+  gap: 50px;
+  white-space: nowrap;
+  animation: tickerScroll 50s linear infinite;
+  width: max-content;
+  padding-left: 30px;
+}
+.news-ticker:hover .news-ticker-track {
+  animation-play-state: paused;
+}
+@keyframes tickerScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.news-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+.news-item-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 8px;
+  font-size: 16px;
+  backdrop-filter: blur(4px);
+  flex-shrink: 0;
+}
+.news-item-text {
+  display: inline-block;
+}
+.news-item-text b {
+  color: #fde047;
+  font-weight: 800;
+  margin: 0 4px;
+}
+.news-item-text .new {
+  background: #ef4444;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 8px;
+  margin-left: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  vertical-align: middle;
+  animation: pulseNew 1.5s ease-in-out infinite;
+}
+@keyframes pulseNew {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+.news-item-text .hot {
+  background: linear-gradient(135deg, #f59e0b, #dc2626);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 8px;
+  margin-left: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  vertical-align: middle;
+}
+.news-ticker-controls {
+  display: flex;
+  gap: 6px;
+  padding-right: 16px;
+  z-index: 2;
+  position: relative;
+}
+.news-ticker-btn {
+  width: 32px;
+  height: 32px;
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  backdrop-filter: blur(4px);
+}
+.news-ticker-btn:hover {
+  background: rgba(255,255,255,0.3);
+  transform: scale(1.1);
+}
+.news-ticker-btn.active {
+  background: #fbbf24;
+  color: #1e293b;
+}
+@media (max-width: 768px) {
+  .news-ticker-label { font-size: 11px; padding: 4px 10px; margin-left: 8px; }
+  .news-ticker-label span:not(.dot) { display: none; }
+  .news-ticker-controls { display: none; }
+  .news-item { font-size: 12px; gap: 6px; }
+  .news-item-icon { width: 24px; height: 24px; font-size: 13px; }
+}
+
+/* ============ SEARCH FEATURE ============ */
+.search-fab {
+  position: fixed;
+  bottom: 100px;
+  right: 24px;
+  z-index: 95;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+  transition: all 0.3s;
+}
+.search-fab:hover {
+  transform: scale(1.1) rotate(10deg);
+  box-shadow: 0 12px 28px rgba(59, 130, 246, 0.6);
+}
+.search-fab.pulse {
+  animation: searchPulse 2s ease-in-out infinite;
+}
+@keyframes searchPulse {
+  0%, 100% { box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4), 0 0 0 0 rgba(59, 130, 246, 0.5); }
+  50% { box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4), 0 0 0 16px rgba(59, 130, 246, 0); }
+}
+
+.search-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 200;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 80px 20px 20px;
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.2s ease;
+}
+.search-overlay.show { display: flex; }
+.search-box {
+  background: #fff;
+  border-radius: 24px;
+  width: 100%;
+  max-width: 700px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  animation: slideDown 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+}
+@keyframes slideDown {
+  from { transform: translateY(-40px) scale(0.95); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+.search-header {
+  padding: 20px;
+  border-bottom: 2px solid #e2e8f0;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: linear-gradient(135deg, #f8fafc, #e0e7ff);
+}
+.search-input {
+  flex: 1;
+  padding: 12px 18px;
+  border: 2px solid #cbd5e1;
+  border-radius: 14px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.2s;
+  background: #fff;
+}
+.search-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+}
+.search-close {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fee2e2;
+  color: #dc2626;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 700;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.search-close:hover {
+  background: #dc2626;
+  color: #fff;
+  transform: rotate(90deg);
+}
+.search-suggestions {
+  display: flex;
+  gap: 8px;
+  padding: 12px 20px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  flex-wrap: wrap;
+}
+.search-suggestion {
+  background: #fff;
+  border: 2px solid #e2e8f0;
+  color: #475569;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.search-suggestion:hover {
+  background: #3b82f6;
+  color: #fff;
+  border-color: #3b82f6;
+  transform: translateY(-2px);
+}
+.search-results {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 0;
+  min-height: 200px;
+}
+.search-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #94a3b8;
+  font-size: 48px;
+}
+.search-empty-text {
+  margin-top: 12px;
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 600;
+}
+.search-result {
+  padding: 14px 20px;
+  border-bottom: 1px solid #f1f5f9;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.search-result:hover {
+  background: #f0f9ff;
+  padding-left: 28px;
+}
+.search-result-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: #fff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.search-result-content { flex: 1; min-width: 0; }
+.search-result-title {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: #1e293b;
+  margin-bottom: 4px;
+}
+.search-result-snippet {
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.search-result-snippet mark {
+  background: #fef08a;
+  color: #1e293b;
+  padding: 0 2px;
+  border-radius: 3px;
+  font-weight: 700;
+}
+.search-result-section {
+  font-size: 11px;
+  color: #3b82f6;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+.search-footer {
+  padding: 12px 20px;
+  border-top: 1px solid #e2e8f0;
+  background: #f8fafc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 600;
+}
+.search-count {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.search-count-num {
+  background: #3b82f6;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+.search-shortcut {
+  background: #e2e8f0;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-family: monospace;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+/* Search highlight on page */
+.search-highlight {
+  background: linear-gradient(120deg, #fef08a 0%, #fde047 100%);
+  padding: 2px 0;
+  border-radius: 3px;
+  box-shadow: 0 0 0 4px rgba(254, 240, 138, 0.3);
+  animation: searchFlash 1.5s ease;
+}
+@keyframes searchFlash {
+  0% { background: linear-gradient(120deg, #fbbf24 0%, #f59e0b 100%); }
+  100% { background: linear-gradient(120deg, #fef08a 0%, #fde047 100%); }
+}
+.search-highlight-current {
+  background: linear-gradient(120deg, #fca5a5 0%, #ef4444 100%) !important;
+  color: #fff !important;
+  padding: 4px 0;
+  font-weight: 700;
+}
+
+body.dark-mode .search-box { background: #1e293b; }
+body.dark-mode .search-header { background: linear-gradient(135deg, #0f172a, #1e3a8a); }
+body.dark-mode .search-input { background: #0f172a; color: #e0e0e0; border-color: #334155; }
+body.dark-mode .search-suggestions { background: #0f172a; border-color: #334155; }
+body.dark-mode .search-suggestion { background: #1e293b; color: #cbd5e1; border-color: #334155; }
+body.dark-mode .search-suggestion:hover { background: #3b82f6; color: #fff; }
+body.dark-mode .search-result:hover { background: #0f172a; }
+body.dark-mode .search-result-title { color: #e0e0e0; }
+body.dark-mode .search-result-snippet { color: #94a3b8; }
+body.dark-mode .search-footer { background: #0f172a; border-color: #334155; color: #94a3b8; }
+
+/* ============ PWA INSTALL BUTTON ============ */
+.pwa-install {
+  position: fixed;
+  bottom: 100px;
+  left: 24px;
+  z-index: 95;
+  padding: 10px 18px;
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 30px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
+  transition: all 0.3s;
+  animation: pwaPulse 2s ease-in-out infinite;
+}
+.pwa-install.show { display: inline-flex; }
+.pwa-install:hover { transform: translateY(-3px) scale(1.05); }
+@keyframes pwaPulse {
+  0%, 100% { box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4); }
+  50% { box-shadow: 0 8px 30px rgba(139, 92, 246, 0.7); }
+}
+
+/* ============ LANGUAGE SWITCHER ============ */
+.lang-switch {
+  position: fixed;
+  top: 70px;
+  right: 290px;
+  z-index: 99;
+  display: flex;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 4px;
+  border-radius: 30px;
+  border: 2px solid var(--leaf);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.lang-btn {
+  background: transparent;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  color: #5d4037;
+  transition: all 0.2s;
+}
+.lang-btn.active {
+  background: linear-gradient(135deg, var(--leaf), var(--leaf-dark));
+  color: #fff;
+}
+@media (max-width: 768px) {
+  .lang-switch { right: auto; left: 50%; top: 130px; transform: translateX(-50%); }
+}
+
+/* ============ CURSOR FOLLOW EFFECT ============ */
+.cursor-fx {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  font-size: 24px;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+.cursor-fx.show { opacity: 1; }
+.cursor-trail {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  width: 8px;
+  height: 8px;
+  background: var(--leaf);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.5s;
+  opacity: 0.6;
+}
+
+/* ============ PROGRESS BAR ============ */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--leaf), var(--sun), var(--orange), var(--pink));
+  z-index: 200;
+  width: 0;
+  transition: width 0.1s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ============ FEEDBACK FORM ============ */
+.feedback-section {
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+  position: relative;
+}
+.feedback-card {
+  max-width: 700px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 32px;
+  padding: 40px 32px;
+  border: 4px solid #3b82f6;
+  box-shadow: 0 16px 40px rgba(59, 130, 246, 0.2);
+  position: relative;
+}
+.feedback-card::before {
+  content: '⭐';
+  position: absolute;
+  top: -32px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 60px;
+  background: #fff;
+  border: 4px solid #3b82f6;
+  border-radius: 50%;
+  padding: 4px;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+}
+.feedback-form { margin-top: 24px; }
+.star-rating {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 20px 0;
+  font-size: 40px;
+}
+.star-rating .star {
+  cursor: pointer;
+  color: #e2e8f0;
+  transition: all 0.2s;
+  filter: grayscale(1);
+}
+.star-rating .star:hover,
+.star-rating .star.active {
+  color: #fbbf24;
+  filter: grayscale(0);
+  transform: scale(1.2);
+}
+.form-group {
+  margin-bottom: 16px;
+}
+.form-group label {
+  display: block;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #1e293b;
+  margin-bottom: 6px;
+}
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.2s;
+  resize: vertical;
+}
+.form-group input:focus,
+.form-group textarea:focus { border-color: #3b82f6; }
+.form-group textarea { min-height: 100px; }
+.form-submit {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: #fff;
+  border: none;
+  border-radius: 16px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 0 #1e40af, 0 8px 20px rgba(59, 130, 246, 0.4);
+  transition: all 0.15s;
+  margin-top: 8px;
+}
+.form-submit:hover {
+  transform: translateY(2px);
+  box-shadow: 0 4px 0 #1e40af;
+}
+.form-submit:active {
+  transform: translateY(6px);
+}
+
+/* ============ FAQ ACCORDION ============ */
+.faq-section {
+  padding: 80px 20px;
+  background: linear-gradient(180deg, #fff8e1, #ffecb3);
+  position: relative;
+}
+.faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.faq-item {
+  background: #fff;
+  border-radius: 20px;
+  border: 2px solid transparent;
+  overflow: hidden;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+.faq-item:hover { border-color: var(--leaf); }
+.faq-item.open {
+  border-color: var(--leaf);
+  box-shadow: 0 8px 20px rgba(76, 175, 80, 0.2);
+}
+.faq-question {
+  width: 100%;
+  padding: 18px 24px;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e293b;
+  cursor: pointer;
+  text-align: left;
+}
+.faq-icon {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--leaf), var(--leaf-dark));
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+  transition: transform 0.3s;
+}
+.faq-item.open .faq-icon { transform: rotate(180deg); }
+.faq-text { flex: 1; }
+.faq-arrow {
+  font-size: 20px;
+  color: var(--leaf);
+  transition: transform 0.3s;
+}
+.faq-item.open .faq-arrow { transform: rotate(180deg); }
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+.faq-item.open .faq-answer {
+  max-height: 500px;
+}
+.faq-answer-inner {
+  padding: 0 24px 20px 74px;
+  color: #475569;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ============ NEWS/BLOG SECTION ============ */
+.news-section {
+  padding: 80px 20px;
+  background: linear-gradient(180deg, #fdf2f8, #fce7f3);
+  position: relative;
+}
+.news-grid {
+  max-width: 1200px;
+  margin: 32px auto 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+.news-card {
+  background: #fff;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 3px solid transparent;
+  transition: all 0.3s;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+.news-card:hover {
+  transform: translateY(-6px);
+  border-color: #ec4899;
+  box-shadow: 0 12px 28px rgba(236, 72, 153, 0.2);
+}
+.news-image {
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 70px;
+  position: relative;
+}
+.news-image-1 { background: linear-gradient(135deg, #fbbf24, #f59e0b, #ef4444); }
+.news-image-2 { background: linear-gradient(135deg, #06b6d4, #3b82f6, #8b5cf6); }
+.news-image-3 { background: linear-gradient(135deg, #84cc16, #22c55e, #14b8a6); }
+.news-image-4 { background: linear-gradient(135deg, #f472b6, #ec4899, #d946ef); }
+.news-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #1e293b;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.news-badge.new { background: linear-gradient(135deg, #ef4444, #dc2626); color: #fff; }
+.news-badge.hot { background: linear-gradient(135deg, #f59e0b, #d97706); color: #fff; }
+.news-content {
+  padding: 20px;
+}
+.news-date {
+  font-size: 12px;
+  color: #94a3b8;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.news-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+.news-excerpt {
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+.news-read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #ec4899;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+}
+.news-read-more:hover { gap: 10px; }
+
+/* Dark mode for new sections */
+body.dark-mode .feedback-card { background: #1e293b; }
+body.dark-mode .feedback-card::before { background: #1e293b; }
+body.dark-mode .form-group label { color: #e0e0e0; }
+body.dark-mode .form-group input,
+body.dark-mode .form-group textarea { background: #0f172a; color: #e0e0e0; border-color: #334155; }
+body.dark-mode .faq-section { background: linear-gradient(180deg, #422006, #1e293b); }
+body.dark-mode .faq-item { background: #1e293b; }
+body.dark-mode .faq-question { color: #e0e0e0; }
+body.dark-mode .faq-answer-inner { color: #94a3b8; }
+body.dark-mode .news-section { background: linear-gradient(180deg, #500724, #1e293b); }
+body.dark-mode .news-card { background: #1e293b; }
+body.dark-mode .news-title { color: #e0e0e0; }
+body.dark-mode .news-excerpt { color: #94a3b8; }
+body.dark-mode .feedback-section { background: linear-gradient(135deg, #1e293b, #1e3a8a); }
+
+/* ============ DARK MODE ============ */
+body.dark-mode {
+  background: linear-gradient(180deg, #0d1b2a 0%, #1b263b 30%, #1e3a2e 60%, #0f2818 100%);
+  color: #e0e0e0;
+}
+body.dark-mode .nav {
+  background: linear-gradient(180deg, rgba(20, 30, 50, 0.95), rgba(20, 30, 50, 0.85));
+  border-bottom-color: #4ade80;
+}
+body.dark-mode .logo-text { color: #4ade80; }
+body.dark-mode .nav-links a { color: #cbd5e1; }
+body.dark-mode .nav-links a:hover { color: #4ade80; }
+body.dark-mode .hero-title { color: #4ade80; }
+body.dark-mode .hero-subtitle { color: #cbd5e1; }
+body.dark-mode .hero-subtitle b { color: #f472b6; }
+body.dark-mode .stat-card { background: #1e293b; color: #e0e0e0; }
+body.dark-mode .stat-card.online { background: linear-gradient(135deg, #1e293b, #134e4a); }
+body.dark-mode .stat-card.visits { background: linear-gradient(135deg, #1e293b, #4c1d3a); }
+body.dark-mode .stat-card.downloads { background: linear-gradient(135deg, #1e293b, #422006); }
+body.dark-mode .stat-label { color: #94a3b8; }
+body.dark-mode .section-wood { background: #1e293b; }
+body.dark-mode .section-title { color: #4ade80; }
+body.dark-mode .section-sub { color: #cbd5e1; }
+body.dark-mode .feature-card { background: #1e293b; color: #e0e0e0; }
+body.dark-mode .feature-title { color: #4ade80; }
+body.dark-mode .feature-desc { color: #94a3b8; }
+body.dark-mode .info-item { background: #1e293b; color: #e0e0e0; }
+body.dark-mode .info-value { color: #e0e0e0; }
+body.dark-mode .step { background: #1e293b; color: #e0e0e0; }
+body.dark-mode .step-title { color: #fb923c; }
+body.dark-mode .step-desc { color: #94a3b8; }
+body.dark-mode .cta-box { background: linear-gradient(135deg, #1e293b, #134e4a); border-color: #fb923c; }
+body.dark-mode .cta-title { color: #4ade80; }
+body.dark-mode .cta-sub { color: #cbd5e1; }
+body.dark-mode .admin-card { background: #1e293b; color: #e0e0e0; }
+body.dark-mode .admin-row { background: linear-gradient(135deg, #1e293b, #134e4a); color: #e0e0e0; }
+body.dark-mode .admin-row.bank { background: linear-gradient(135deg, #1e293b, #422006); }
+body.dark-mode .admin-row.discord { background: linear-gradient(135deg, #1e293b, #1e1b4b); }
+body.dark-mode .admin-row.zalo { background: linear-gradient(135deg, #1e293b, #0c1e3a); }
+body.dark-mode .admin-row.facebook { background: linear-gradient(135deg, #1e293b, #0c1e3a); }
+body.dark-mode .admin-value { color: #e0e0e0; }
+body.dark-mode .admin-value small { color: #94a3b8; }
+body.dark-mode .admin-label { color: #94a3b8; }
+body.dark-mode .modal { background: linear-gradient(135deg, #1e293b 0%, #0f172a 50%, #134e4a 100%); color: #e0e0e0; }
+body.dark-mode .modal-title { color: #4ade80; }
+body.dark-mode .modal-subtitle { color: #cbd5e1; }
+body.dark-mode .modal-info-row { background: #0f172a; color: #e0e0e0; }
+body.dark-mode .modal-info-row:hover { background: #1e293b; }
+body.dark-mode .modal-info-value { color: #e0e0e0; }
+body.dark-mode .modal-section-title { color: #fb923c; border-bottom-color: #422006; }
+body.dark-mode .leaderboard-card { background: #1e293b; color: #e0e0e0; }
+body.dark-mode .leaderboard-row { background: #0f172a; }
+body.dark-mode .leaderboard-row.top1 { background: linear-gradient(135deg, #422006, #fbbf24); }
+body.dark-mode .leaderboard-row.top2 { background: linear-gradient(135deg, #1e293b, #94a3b8); }
+body.dark-mode .leaderboard-row.top3 { background: linear-gradient(135deg, #422006, #ea580c); }
+body.dark-mode .slideshow-section { background: #0f172a; }
+body.dark-mode .share-bar { background: #1e293b; }
+body.dark-mode .chat-window { background: #1e293b; color: #e0e0e0; }
+body.dark-mode .chat-header { background: #0f172a; }
+
+/* ============ DARK MODE TOGGLE ============ */
+.theme-toggle {
+  position: fixed;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99;
+  pointer-events: auto;
+  width: 50px;
+  height: 50px;
+  border: 2px solid #fff;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 16px rgba(245, 158, 11, 0.4);
+  transition: all 0.3s;
+}
+.theme-toggle:hover {
+  transform: translateX(-50%) scale(1.1) rotate(180deg);
+}
+body.dark-mode .theme-toggle {
+  background: linear-gradient(135deg, #6366f1, #4338ca);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+}
+
+/* ============ UPDATE NOTIFICATION (MỚI) ============ */
+.update-notif {
+  position: fixed;
+  top: 130px;
+  right: 20px;
+  z-index: 95;
+  background: linear-gradient(135deg, #4ade80, #16a34a);
+  color: #fff;
+  padding: 14px 20px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(22, 163, 74, 0.4);
+  max-width: 320px;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transform: translateX(400px);
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+.update-notif.show {
+  transform: translateX(0);
+  animation: notifShake 0.5s ease-in-out 1s;
+}
+.update-notif .close-notif {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: #fff;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 14px;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+.update-notif .close-notif:hover { background: rgba(255, 255, 255, 0.4); }
+@keyframes notifShake {
+  0%, 100% { transform: translateX(0) rotate(0); }
+  25% { transform: translateX(0) rotate(-3deg); }
+  75% { transform: translateX(0) rotate(3deg); }
+}
+
+/* ============ SLIDESHOW ============ */
+.slideshow-section {
+  padding: 80px 20px;
+  background: linear-gradient(180deg, #0f172a, #1e293b);
+  position: relative;
+}
+.slideshow-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  border: 4px solid var(--leaf);
+}
+.slideshow {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.slide {
+  min-width: 100%;
+  aspect-ratio: 16 / 9;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+  color: #fff;
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+}
+.slide-1 { background: linear-gradient(135deg, #4ade80, #16a34a, #fbbf24); }
+.slide-2 { background: linear-gradient(135deg, #fb923c, #dc2626, #fbbf24); }
+.slide-3 { background: linear-gradient(135deg, #06b6d4, #3b82f6, #8b5cf6); }
+.slide-4 { background: linear-gradient(135deg, #ec4899, #d946ef, #fbbf24); }
+.slide-5 { background: linear-gradient(135deg, #84cc16, #22c55e, #14b8a6); }
+.slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 30%, rgba(0, 0, 0, 0.6));
+  display: flex;
+  align-items: flex-end;
+  padding: 30px;
+  font-family: 'Fredoka', sans-serif;
+}
+.slide-title {
+  font-size: clamp(20px, 3vw, 32px);
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+.slide-subtitle {
+  font-size: clamp(13px, 1.5vw, 16px);
+  font-weight: 600;
+  color: #fff;
+  margin-top: 6px;
+  opacity: 0.95;
+}
+.slide-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 5;
+  transition: all 0.3s;
+}
+.slide-nav:hover {
+  background: rgba(255, 255, 255, 0.6);
+  transform: translateY(-50%) scale(1.1);
+}
+.slide-nav.prev { left: 16px; }
+.slide-nav.next { right: 16px; }
+.slide-dots {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 5;
+}
+.slide-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: all 0.3s;
+  border: 2px solid transparent;
+}
+.slide-dot.active {
+  background: #fff;
+  width: 32px;
+  border-radius: 6px;
+}
+
+/* ============ LEADERBOARD ============ */
+.leaderboard-section {
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #fff8e1, #fce4ec);
+  position: relative;
+}
+.leaderboard-card {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 32px;
+  padding: 32px 24px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+  border: 4px solid var(--gold);
+  position: relative;
+}
+.leaderboard-card::before {
+  content: '🏆';
+  position: absolute;
+  top: -32px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 60px;
+  background: #fff;
+  border: 4px solid var(--gold);
+  border-radius: 50%;
+  padding: 4px;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+}
+.leaderboard-list {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.leaderboard-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+  background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+  border-radius: 16px;
+  border: 2px solid transparent;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.leaderboard-row:hover {
+  transform: translateX(8px);
+  border-color: var(--leaf);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+.leaderboard-row.top1 {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border-color: #fbbf24;
+  animation: goldShine 3s ease-in-out infinite;
+}
+@keyframes goldShine {
+  0%, 100% { box-shadow: 0 6px 16px rgba(251, 191, 36, 0.3); }
+  50% { box-shadow: 0 6px 24px rgba(251, 191, 36, 0.7); }
+}
+.leaderboard-row.top2 {
+  background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+  border-color: #94a3b8;
+}
+.leaderboard-row.top3 {
+  background: linear-gradient(135deg, #fed7aa, #fdba74);
+  border-color: #ea580c;
+}
+.leaderboard-rank {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  min-width: 50px;
+  text-align: center;
+}
+.leaderboard-row.top1 .leaderboard-rank { color: #d97706; }
+.leaderboard-row.top2 .leaderboard-rank { color: #475569; }
+.leaderboard-row.top3 .leaderboard-rank { color: #c2410c; }
+.leaderboard-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  background: #fff;
+  border: 2px solid currentColor;
+  flex-shrink: 0;
+}
+.leaderboard-info { flex: 1; }
+.leaderboard-name {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e293b;
+}
+.leaderboard-meta {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 600;
+  margin-top: 2px;
+}
+.leaderboard-score {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--leaf-dark);
+}
+.leaderboard-row.top1 .leaderboard-score { color: #d97706; }
+.leaderboard-row.top2 .leaderboard-score { color: #475569; }
+.leaderboard-row.top3 .leaderboard-score { color: #c2410c; }
+
+/* ============ SHARE BAR ============ */
+.share-bar {
+  max-width: 700px;
+  margin: 32px auto 0;
+  padding: 20px;
+  background: #fff;
+  border-radius: 20px;
+  border: 3px dashed var(--leaf);
+  text-align: center;
+}
+.share-bar-title {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--leaf-dark);
+  margin-bottom: 12px;
+}
+.share-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.share-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  font-size: 22px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.share-btn:hover {
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+.share-btn.fb { background: #1877f2; }
+.share-btn.zalo { background: #0068ff; }
+.share-btn.discord { background: #5865F2; }
+.share-btn.twitter { background: #1da1f2; }
+.share-btn.copy { background: linear-gradient(135deg, var(--leaf), var(--leaf-dark)); }
+.share-btn.native { background: linear-gradient(135deg, #f59e0b, #d97706); }
+
+/* ============ LIVE CHAT WIDGET ============ */
+.chat-toggle {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 95;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4ade80, #16a34a);
+  color: #fff;
+  border: 3px solid #fff;
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(22, 163, 74, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  animation: chatPulse 2s ease-in-out infinite;
+}
+@keyframes chatPulse {
+  0%, 100% { box-shadow: 0 8px 24px rgba(22, 163, 74, 0.5); }
+  50% { box-shadow: 0 8px 24px rgba(22, 163, 74, 0.5), 0 0 0 10px rgba(22, 163, 74, 0.2); }
+}
+.chat-toggle:hover {
+  transform: scale(1.15) rotate(15deg);
+}
+.chat-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 12px;
+  border: 2px solid #fff;
+  animation: badgeBounce 1.5s ease-in-out infinite;
+}
+.chat-window {
+  position: fixed;
+  bottom: 100px;
+  right: 24px;
+  z-index: 96;
+  width: 340px;
+  max-width: calc(100vw - 32px);
+  height: 480px;
+  max-height: calc(100vh - 140px);
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  border: 3px solid var(--leaf);
+  transform: translateY(20px) scale(0.9);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.chat-window.show {
+  display: flex;
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+.chat-header {
+  background: linear-gradient(135deg, var(--leaf), var(--leaf-dark));
+  color: #fff;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+}
+.chat-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  border: 2px solid #fff;
+}
+.chat-status {
+  font-size: 11px;
+  opacity: 0.95;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.chat-status::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: #4ade80;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 #4ade80;
+  animation: liveBlink 1.5s ease-in-out infinite;
+}
+.chat-close {
+  margin-left: auto;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+}
+.chat-close:hover { background: rgba(255, 255, 255, 0.4); }
+.chat-messages {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: linear-gradient(180deg, #f0fdf4, #fff);
+}
+.chat-msg {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  animation: msgSlide 0.3s ease-out;
+}
+@keyframes msgSlide {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.chat-msg.user {
+  flex-direction: row-reverse;
+}
+.chat-msg-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--leaf);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #fff;
+  flex-shrink: 0;
+}
+.chat-msg.user .chat-msg-avatar {
+  background: #ec4899;
+}
+.chat-msg-bubble {
+  max-width: 70%;
+  padding: 10px 14px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  font-size: 14px;
+  line-height: 1.4;
+  word-break: break-word;
+  position: relative;
+}
+.chat-msg.user .chat-msg-bubble {
+  background: linear-gradient(135deg, #ec4899, #f472b6);
+  color: #fff;
+  border-color: #ec4899;
+}
+.chat-msg-time {
+  font-size: 10px;
+  opacity: 0.7;
+  margin-top: 2px;
+}
+.chat-typing {
+  display: flex;
+  gap: 4px;
+  padding: 8px 0;
+}
+.chat-typing span {
+  width: 8px;
+  height: 8px;
+  background: #94a3b8;
+  border-radius: 50%;
+  animation: typingDot 1.4s ease-in-out infinite;
+}
+.chat-typing span:nth-child(2) { animation-delay: 0.2s; }
+.chat-typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typingDot {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-6px); opacity: 1; }
+}
+.chat-input {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  background: #fff;
+  border-top: 2px solid #e2e8f0;
+}
+.chat-input input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 2px solid #e2e8f0;
+  border-radius: 24px;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.2s;
+}
+.chat-input input:focus { border-color: var(--leaf); }
+.chat-input button {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--leaf), var(--leaf-dark));
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.chat-input button:hover { transform: scale(1.1); }
+.chat-quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0 12px 8px;
+  background: #fff;
+}
+.chat-quick-btn {
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  color: var(--leaf-dark);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.chat-quick-btn:hover {
+  background: var(--leaf);
+  color: #fff;
+}
+
+/* ============ DONATE SECTION ============ */
+.donate-section {
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 50%, #fcd34d 100%);
+  position: relative;
+  overflow: hidden;
+}
+.donate-section::before {
+  content: '💝';
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  font-size: 80px;
+  opacity: 0.2;
+  animation: floatSlow 6s ease-in-out infinite;
+}
+.donate-section::after {
+  content: '🌟';
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  font-size: 80px;
+  opacity: 0.2;
+  animation: floatSlow 5s ease-in-out infinite reverse;
+}
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0) rotate(-10deg); }
+  50% { transform: translateY(-20px) rotate(10deg); }
+}
+.donate-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 40px;
+  align-items: center;
+  background: #fff;
+  border-radius: 32px;
+  padding: 40px;
+  box-shadow: 0 20px 50px rgba(245, 158, 11, 0.3);
+  border: 4px solid #f59e0b;
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 768px) {
+  .donate-container {
+    grid-template-columns: 1fr;
+    padding: 24px;
+    gap: 24px;
+  }
+}
+.donate-qr {
+  text-align: center;
+  position: relative;
+}
+.donate-qr-box {
+  display: inline-block;
+  padding: 16px;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  border-radius: 24px;
+  box-shadow: 0 12px 30px rgba(245, 158, 11, 0.5);
+  position: relative;
+}
+.donate-qr-box::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  background: linear-gradient(45deg, #f59e0b, #ec4899, #8b5cf6, #3b82f6, #f59e0b);
+  background-size: 300% 300%;
+  border-radius: 30px;
+  z-index: -1;
+  animation: rainbowBorder 3s ease infinite;
+}
+@keyframes rainbowBorder {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.donate-qr img {
+  width: 280px;
+  height: 280px;
+  display: block;
+  background: #fff;
+  border-radius: 16px;
+  border: 4px solid #fff;
+}
+.donate-qr-caption {
+  margin-top: 16px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #b45309;
+}
+.donate-info {
+  padding: 12px;
+}
+.donate-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 700;
+  color: #b45309;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.donate-emoji {
+  display: inline-block;
+  animation: heartBeat 1.5s ease-in-out infinite;
+}
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  25%, 75% { transform: scale(1.15); }
+  50% { transform: scale(0.95); }
+}
+.donate-subtitle {
+  font-size: 16px;
+  color: #78350f;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+.donate-bank-card {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border-radius: 20px;
+  padding: 20px;
+  border: 2px dashed #f59e0b;
+  margin-bottom: 16px;
+}
+.donate-bank-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px dashed rgba(180, 83, 9, 0.2);
+}
+.donate-bank-row:last-child { border-bottom: none; }
+.donate-bank-label {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  color: #92400e;
+  font-size: 14px;
+}
+.donate-bank-value {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  color: #1e293b;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.donate-copy {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #fff;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 8px rgba(217, 119, 6, 0.4);
+  transition: all 0.2s;
+}
+.donate-copy:hover {
+  transform: scale(1.15) rotate(10deg);
+}
+.donate-note {
+  background: linear-gradient(135deg, #ec4899, #db2777);
+  color: #fff;
+  border-radius: 16px;
+  padding: 16px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  box-shadow: 0 6px 16px rgba(236, 72, 153, 0.3);
+}
+.donate-stats {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+.donate-stat {
+  flex: 1;
+  min-width: 100px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 16px;
+  padding: 12px;
+  text-align: center;
+  border: 2px solid #fbbf24;
+}
+.donate-stat-num {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #b45309;
+}
+.donate-stat-label {
+  font-size: 12px;
+  color: #78350f;
+  font-weight: 600;
+  margin-top: 2px;
+}
+body.dark-mode .donate-section { background: linear-gradient(135deg, #422006, #78350f); }
+body.dark-mode .donate-container { background: #1e293b; border-color: #f59e0b; }
+body.dark-mode .donate-title { color: #fbbf24; }
+body.dark-mode .donate-subtitle { color: #cbd5e1; }
+body.dark-mode .donate-bank-card { background: linear-gradient(135deg, #422006, #78350f); }
+body.dark-mode .donate-bank-label { color: #fbbf24; }
+body.dark-mode .donate-bank-value { color: #e0e0e0; }
+body.dark-mode .donate-stat { background: #0f172a; }
+body.dark-mode .donate-stat-num { color: #fbbf24; }
+body.dark-mode .donate-stat-label { color: #cbd5e1; }
+
+/* ============ WEATHER WIDGET ============ */
+.weather-section {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+.weather-header { text-align: center; margin-bottom: 30px; }
+.weather-card-main {
+  position: relative;
+  border-radius: 24px;
+  padding: 40px 30px 30px;
+  color: #fff;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+  min-height: 360px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 24px;
+  transition: background 1s;
+}
+.weather-scene {
+  position: relative;
+  height: 220px;
+  grid-column: 1;
+  grid-row: 1;
+  border-radius: 16px;
+  background: rgba(0,0,0,0.15);
+  overflow: hidden;
+}
+.weather-sun, .weather-moon, .weather-cloud {
+  position: absolute;
+  font-size: 80px;
+  transition: opacity 0.8s, transform 0.8s;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+}
+.weather-sun {
+  top: 20px; right: 30px;
+  animation: sunRotate 20s linear infinite;
+}
+.weather-moon {
+  top: 20px; right: 30px;
+  opacity: 0;
+  font-size: 70px;
+}
+.weather-cloud.cloud-1 {
+  top: 30px; left: 20px;
+  font-size: 60px;
+  opacity: 0;
+  animation: cloudDrift 25s linear infinite;
+}
+.weather-cloud.cloud-2 {
+  top: 100px; left: 60px;
+  font-size: 50px;
+  opacity: 0;
+  animation: cloudDrift 35s linear infinite reverse;
+}
+.weather-rain {
+  position: absolute; inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.raindrop {
+  position: absolute;
+  top: -20px;
+  width: 2px;
+  height: 14px;
+  background: linear-gradient(180deg, transparent, #60a5fa);
+  border-radius: 2px;
+  animation: rainFall 0.7s linear infinite;
+  box-shadow: 0 0 4px rgba(96,165,250,0.6);
+}
+.weather-stars {
+  position: absolute; inset: 0;
+  opacity: 0;
+  transition: opacity 0.8s;
+  pointer-events: none;
+}
+.star {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  animation: starTwinkle 2s ease-in-out infinite;
+  box-shadow: 0 0 4px #fff;
+}
+@keyframes sunRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes cloudDrift {
+  from { transform: translateX(0); }
+  to { transform: translateX(300px); }
+}
+@keyframes rainFall {
+  to { transform: translateY(250px); }
+}
+@keyframes starTwinkle {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+.weather-info {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: right;
+}
+.weather-temp {
+  font-size: 72px;
+  font-weight: 900;
+  line-height: 1;
+  text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.weather-condition {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 6px 0;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+.weather-location {
+  font-size: 14px;
+  opacity: 0.9;
+  margin: 4px 0;
+}
+.weather-time {
+  font-size: 22px;
+  font-weight: 800;
+  margin-top: 8px;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+.weather-effects {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  background: rgba(0,0,0,0.15);
+  padding: 14px;
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+}
+.effect-item {
+  position: relative;
+  background: rgba(255,255,255,0.15);
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  overflow: hidden;
+}
+.effect-item span { font-size: 22px; display: block; margin-bottom: 4px; }
+.effect-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 4px;
+  width: var(--val, 50%);
+  background: linear-gradient(90deg, #fbbf24, #f59e0b);
+  border-radius: 0 0 12px 12px;
+  transition: width 0.8s;
+}
+.effect-item.boost { background: rgba(74, 222, 128, 0.3); }
+.effect-item.boost::after { background: linear-gradient(90deg, #4ade80, #16a34a); }
+.effect-item.warn { background: rgba(239, 68, 68, 0.3); }
+.effect-item.warn::after { background: linear-gradient(90deg, #ef4444, #b91c1c); }
+
+.weather-forecast {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+}
+.forecast-day {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  border: 2px solid transparent;
+}
+.forecast-day:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
+.forecast-day.today {
+  background: linear-gradient(135deg, var(--leaf), var(--leaf-dark));
+  color: #fff;
+  border-color: var(--leaf-dark);
+}
+.forecast-name { font-size: 12px; font-weight: 700; opacity: 0.8; margin-bottom: 6px; }
+.forecast-icon { font-size: 36px; margin: 6px 0; }
+.forecast-temp { font-size: 18px; font-weight: 900; }
+.forecast-cond { font-size: 11px; margin-top: 4px; opacity: 0.85; }
+
+.weather-tips {
+  margin-top: 24px;
+  background: linear-gradient(135deg, #fff8e1, #ffecb3);
+  border-radius: 20px;
+  padding: 20px 24px;
+  border-left: 6px solid var(--sun-deep);
+  box-shadow: 0 6px 20px rgba(255,170,0,0.15);
+}
+.weather-tips h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: var(--leaf-dark);
+}
+.weather-tip-content { font-size: 15px; line-height: 1.6; color: #3e2723; }
+body.dark-mode .weather-tips { background: linear-gradient(135deg, #422006, #78350f); }
+body.dark-mode .weather-tips h3 { color: #fbbf24; }
+body.dark-mode .weather-tip-content { color: #fde68a; }
+
+.weather-farming { margin-top: 30px; }
+.weather-farming h3 {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 16px;
+  color: var(--leaf-dark);
+}
+body.dark-mode .weather-farming h3 { color: #81c784; }
+.farming-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+.farming-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  transition: all 0.3s;
+  border: 2px solid transparent;
+}
+.farming-card:hover { transform: translateY(-4px); box-shadow: 0 8px 22px rgba(0,0,0,0.12); }
+.farming-card.active-season {
+  border-color: var(--leaf);
+  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+  transform: scale(1.05);
+  box-shadow: 0 10px 28px rgba(76,175,80,0.25);
+}
+.farming-season { font-size: 20px; font-weight: 800; color: var(--leaf-dark); margin-bottom: 8px; }
+.farming-crops { font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 8px; }
+.farming-month { font-size: 12px; color: #888; font-weight: 700; }
+body.dark-mode .farming-card { background: #1e293b; }
+body.dark-mode .farming-card.active-season { background: linear-gradient(135deg, #064e3b, #065f46); }
+body.dark-mode .farming-season { color: #81c784; }
+body.dark-mode .farming-crops { color: #cbd5e1; }
+
+@media (max-width: 768px) {
+  .weather-card-main {
+    grid-template-columns: 1fr;
+    padding: 24px 20px;
+  }
+  .weather-scene { grid-column: 1; }
+  .weather-info { grid-column: 1; text-align: center; }
+  .weather-temp { font-size: 56px; }
+  .weather-effects { grid-template-columns: repeat(2, 1fr); }
+  .weather-forecast { grid-template-columns: repeat(4, 1fr); }
+  .forecast-day:nth-child(n+5) { display: none; }
+  .weather-sun, .weather-moon { font-size: 56px; }
+  .weather-cloud { font-size: 40px !important; }
+}
+
+/* ============ TOAST ============ */
+.toast {
+  position: fixed;
+  top: 90px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+  background: var(--leaf-dark);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 16px;
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  z-index: 1000;
+  opacity: 0;
+  transition: all 0.3s;
+  pointer-events: none;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .stats-bar { gap: 12px; }
+  .stat-card { min-width: 140px; padding: 14px 16px; }
+  .stat-value { font-size: 22px; }
+  .dl-btn-mega { font-size: 14px; padding: 14px 22px; }
+  .admin-grid { grid-template-columns: 1fr; gap: 24px; }
+  .qr-box { max-width: 280px; margin: 0 auto; }
+  .admin-row { padding: 12px 14px; gap: 12px; }
+  .admin-icon { width: 42px; height: 42px; font-size: 24px; }
+  .admin-value { font-size: 16px; }
+  .top-bar { padding: 0 12px; }
+  .top-btn-info { font-size: 12px; padding: 8px 14px; }
+  .modal { padding: 24px 20px; }
+  .modal-title { font-size: 22px; }
+}
+@media (max-width: 480px) {
+  .copy-btn { padding: 6px 10px; font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Background scene -->
+<div class="scene">
+  <div class="sun"></div>
+  <div class="mountains"></div>
+  <div class="grass-field"></div>
+  <div class="cloud cloud-1"></div>
+  <div class="cloud cloud-2"></div>
+  <div class="cloud cloud-3"></div>
+</div>
+
+<!-- Leaves & butterflies -->
+<div class="leaves" id="leaves"></div>
+<div class="butterfly" style="top: 30%; --wave: -100px; animation-duration: 18s; animation-delay: 0s;">🦋</div>
+<div class="butterfly" style="top: 60%; --wave: 150px; animation-duration: 22s; animation-delay: 5s;">🦋</div>
+<div class="butterfly" style="top: 40%; --wave: -50px; animation-duration: 25s; animation-delay: 12s;">🐝</div>
+
+<!-- ============ TOP ACTION BAR ============ -->
+<div class="top-bar">
+  <button class="top-btn top-btn-info" onclick="openInfoModal()">
+    ℹ️ XEM THÔNG TIN
+    <span class="badge">HOT</span>
+  </button>
+  <button class="top-btn top-btn-music" id="music-btn" onclick="toggleMusic()">
+    <span id="music-icon">🔇</span>
+    <span class="music-note music-note-1">♪</span>
+    <span class="music-note music-note-2">♫</span>
+    <span class="music-note music-note-3">♬</span>
+  </button>
+  <button class="top-btn top-btn-info" id="show-info-btn" onclick="openInfoModal()" style="background: linear-gradient(135deg, var(--leaf), var(--leaf-dark));">
+    👁️ Xem Lại
+  </button>
+</div>
+
+<!-- Dark mode toggle -->
+<button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="Bật/Tắt Dark Mode">
+  <span id="theme-icon">🌙</span>
+</button>
+
+<!-- Update notification -->
+<div class="update-notif" id="update-notif">
+  <span style="font-size: 24px;">🎉</span>
+  <div style="flex: 1;">
+    <div style="font-weight: 800; margin-bottom: 2px;">v1.0.0 vừa ra mắt!</div>
+    <div style="opacity: 0.95;">Thêm Dark Mode, Chat, Leaderboard 🌟</div>
+  </div>
+  <button class="close-notif" onclick="closeUpdateNotif()">✕</button>
+</div>
+
+<!-- Progress bar đọc bài -->
+<div class="reading-progress" id="reading-progress"></div>
+
+<!-- PWA Install button -->
+<button class="pwa-install" id="pwa-install">
+  📲 Cài đặt làm App
+</button>
+
+<!-- Search FAB -->
+<button class="search-fab pulse" id="search-fab" onclick="openSearch()" title="Tìm kiếm (Ctrl+K)">
+  🔍
+</button>
+
+<!-- Search overlay -->
+<div class="search-overlay" id="search-overlay" onclick="if(event.target===this)closeSearch()">
+  <div class="search-box">
+    <div class="search-header">
+      <span style="font-size: 22px;">🔍</span>
+      <input type="text" class="search-input" id="search-input" placeholder="Tìm kiếm trong trang... (Ctrl+K)" autocomplete="off" oninput="doSearch(this.value)">
+      <button class="search-close" onclick="closeSearch()">✕</button>
+    </div>
+    <div class="search-suggestions">
+      <button class="search-suggestion" onclick="quickSearch('apk')">📱 APK</button>
+      <button class="search-suggestion" onclick="quickSearch('discord')">🎮 Discord</button>
+      <button class="search-suggestion" onclick="quickSearch('minecraft')">🎮 Minecraft</button>
+      <button class="search-suggestion" onclick="quickSearch('halloween')">🎃 Halloween</button>
+      <button class="search-suggestion" onclick="quickSearch('ủng hộ')">💝 Ủng hộ</button>
+      <button class="search-suggestion" onclick="quickSearch('faq')">❓ FAQ</button>
+      <button class="search-suggestion" onclick="quickSearch('pvp')">⚔️ PvP</button>
+    </div>
+    <div class="search-results" id="search-results">
+      <div class="search-empty">
+        🔍
+        <div class="search-empty-text">Gõ từ khóa để bắt đầu tìm kiếm</div>
+      </div>
+    </div>
+    <div class="search-footer">
+      <div class="search-count">
+        <span>Kết quả:</span>
+        <span class="search-count-num" id="search-count">0</span>
+      </div>
+      <div>
+        <span class="search-shortcut">↑↓</span> di chuyển ·
+        <span class="search-shortcut">Enter</span> mở ·
+        <span class="search-shortcut">Esc</span> đóng
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Language switcher -->
+<div class="lang-switch" id="lang-switch">
+  <button class="lang-btn active" data-lang="vi" onclick="setLang('vi')">🇻🇳 VI</button>
+  <button class="lang-btn" data-lang="en" onclick="setLang('en')">🇺🇸 EN</button>
+</div>
+
+<!-- Cursor follow effect -->
+<div class="cursor-fx" id="cursor-fx">🌱</div>
+
+<!-- Live chat widget -->
+<div class="chat-window" id="chat-window">
+  <div class="chat-header">
+    <div class="chat-avatar">👨‍🌾</div>
+    <div>
+      <div>Admin Bùi Chí Kiệt</div>
+      <div class="chat-status">Đang hoạt động</div>
+    </div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-messages" id="chat-messages">
+    <div class="chat-msg">
+      <div class="chat-msg-avatar">👨‍🌾</div>
+      <div>
+        <div class="chat-msg-bubble">
+          Chào bạn! 👋 Mình là Admin Nông Trại Online 🌻
+          <div class="chat-msg-time">Vừa xong</div>
+        </div>
+      </div>
+    </div>
+    <div class="chat-msg">
+      <div class="chat-msg-avatar">👨‍🌾</div>
+      <div>
+        <div class="chat-msg-bubble">
+          Có gì cần hỗ trợ không bạn? Cứ hỏi thoải mái nhé! 🌟
+          <div class="chat-msg-time">Vừa xong</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="chat-quick">
+    <button class="chat-quick-btn" onclick="sendQuick('Làm sao tải game?')">📱 Tải game</button>
+    <button class="chat-quick-btn" onclick="sendQuick('Cách chơi?')">🎮 Hướng dẫn</button>
+    <button class="chat-quick-btn" onclick="sendQuick('Liên hệ Admin')">📞 Liên hệ</button>
+    <button class="chat-quick-btn" onclick="sendQuick('Ủng hộ Admin')">💰 Ủng hộ</button>
+  </div>
+  <div class="chat-input">
+    <input type="text" id="chat-input" placeholder="Nhập tin nhắn..." onkeypress="if(event.key==='Enter') sendChat()" />
+    <button onclick="sendChat()">➤</button>
+  </div>
+</div>
+<button class="chat-toggle" id="chat-toggle" onclick="toggleChat()">
+  <span>💬</span>
+  <span class="chat-badge">2</span>
+</button>
+
+<!-- ============ INFO MODAL ============ -->
+<!-- News Ticker -->
+<div class="news-ticker" id="news-ticker">
+  <div class="news-ticker-label">
+    <span class="dot"></span>
+    <span>📢 Tin Hot</span>
+  </div>
+  <div class="news-ticker-content">
+    <div class="news-ticker-track" id="news-ticker-track">
+      <div class="news-item">
+        <span class="news-item-icon">🎃</span>
+        <span class="news-item-text">Sự kiện <b>Halloween 2026</b> chính thức ra mắt với hàng trăm phần quà hấp dẫn <span class="new">Mới</span></span>
+      </div>
+      <div class="news-item">
+        <span class="news-item-icon">🐉</span>
+        <span class="news-item-text">Pet <b>Rồng Huyền Thoại</b> đã xuất hiện - săn ngay trong tuần này! <span class="hot">Hot</span></span>
+      </div>
+      <div class="news-item">
+        <span class="news-item-icon">🏆</span>
+        <span class="news-item-text">Giải đấu <b>Nông Dân Vàng 2026</b> - Tổng giải thưởng <b>10 triệu xu</b> - Đăng ký ngay!</span>
+      </div>
+      <div class="news-item">
+        <span class="news-item-icon">📱</span>
+        <span class="news-item-text">Bản cập nhật <b>v1.0.0 Season 1</b> đã phát hành - Tải APK mới nhất từ Google Drive</span>
+      </div>
+      <div class="news-item">
+        <span class="news-item-icon">🎮</span>
+        <span class="news-item-text">Cộng đồng <b>1000+ game thủ</b> Việt đang chơi - Tham gia Discord ngay hôm nay!</span>
+      </div>
+      <div class="news-item">
+        <span class="news-item-icon">💝</span>
+        <span class="news-item-text">Ủng hộ Admin qua <b>MB Bank</b> để server hoạt động 24/7 ổn định <span class="hot">Hot</span></span>
+      </div>
+      <div class="news-item">
+        <span class="news-item-icon">🎯</span>
+        <span class="news-item-text">Mini-game <b>Xèng Quay</b> đã có - Cơ hội nhân đôi xu mỗi ngày</span>
+      </div>
+      <div class="news-item">
+        <span class="news-item-icon">⚔️</span>
+        <span class="news-item-text">Tính năng <b>PvP Online</b> qua WebSocket thời gian thực - Thách đấu bạn bè!</span>
+      </div>
+      <div class="news-item">
+        <span class="news-item-icon">🌻</span>
+        <span class="news-item-text">Mùa <b>Hoa Hướng Dương</b> - Thu thập hạt giống hiếm để đổi quà VIP <span class="new">Mới</span></span>
+      </div>
+      <div class="news-item">
+        <span class="news-item-icon">💌</span>
+        <span class="news-item-text">Gửi đánh giá của bạn - Mỗi feedback giúp Admin phát triển game tốt hơn</span>
+      </div>
+      <!-- Duplicate for seamless loop -->
+      <div class="news-item">
+        <span class="news-item-icon">🎃</span>
+        <span class="news-item-text">Sự kiện <b>Halloween 2026</b> chính thức ra mắt với hàng trăm phần quà hấp dẫn <span class="new">Mới</span></span>
+      </div>
+      <div class="news-item">
+        <span class="news-item-icon">🐉</span>
+        <span class="news-item-text">Pet <b>Rồng Huyền Thoại</b> đã xuất hiện - săn ngay trong tuần này! <span class="hot">Hot</span></span>
+      </div>
+      <div class="news-item">
+        <span class="news-item-icon">🏆</span>
+        <span class="news-item-text">Giải đấu <b>Nông Dân Vàng 2026</b> - Tổng giải thưởng <b>10 triệu xu</b> - Đăng ký ngay!</span>
+      </div>
+      <div class="news-item">
+        <span class="news-item-icon">📱</span>
+        <span class="news-item-text">Bản cập nhật <b>v1.0.0 Season 1</b> đã phát hành - Tải APK mới nhất từ Google Drive</span>
+      </div>
+      <div class="news-item">
+        <span class="news-item-icon">🎮</span>
+        <span class="news-item-text">Cộng đồng <b>1000+ game thủ</b> Việt đang chơi - Tham gia Discord ngay hôm nay!</span>
+      </div>
+      <div class="news-item">
+        <span class="news-item-icon">💝</span>
+        <span class="news-item-text">Ủng hộ Admin qua <b>MB Bank</b> để server hoạt động 24/7 ổn định <span class="hot">Hot</span></span>
+      </div>
+      <div class="news-item">
+        <span class="news-item-icon">🎯</span>
+        <span class="news-item-text">Mini-game <b>Xèng Quay</b> đã có - Cơ hội nhân đôi xu mỗi ngày</span>
+      </div>
+      <div class="news-item">
+        <span class="news-item-icon">⚔️</span>
+        <span class="news-item-text">Tính năng <b>PvP Online</b> qua WebSocket thời gian thực - Thách đấu bạn bè!</span>
+      </div>
+      <div class="news-item">
+        <span class="news-item-icon">🌻</span>
+        <span class="news-item-text">Mùa <b>Hoa Hướng Dương</b> - Thu thập hạt giống hiếm để đổi quà VIP <span class="new">Mới</span></span>
+      </div>
+    </div>
+  </div>
+  <div class="news-ticker-controls">
+    <button class="news-ticker-btn" onclick="toggleTicker()" id="ticker-toggle" title="Tạm dừng">⏸</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="info-modal" onclick="closeInfoModal(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeInfoModal()">✕</button>
+    
+    <div class="modal-header">
+      <div style="text-align: center; margin-bottom: 8px;">
+        <span style="display: inline-block; padding: 4px 12px; background: linear-gradient(135deg, var(--gold), var(--orange)); color: #fff; border-radius: 20px; font-size: 11px; font-weight: 800; letter-spacing: 2px; box-shadow: 0 2px 8px rgba(255, 152, 0, 0.4); animation: pulse 2s ease-in-out infinite;">🎉 WELCOME 🎉</span>
+      </div>
+      <div class="modal-avatar">👨‍🌾</div>
+      <h2 class="modal-title">Bùi Chí Kiệt</h2>
+      <p class="modal-subtitle">👑 Admin & Tác giả Nông Trại Online 🌻</p>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">
+        💳 Thông Tin Ngân Hàng & Thanh Toán
+      </div>
+      <div class="modal-info-row bank">
+        <div class="modal-info-icon">🏦</div>
+        <div style="flex: 1;">
+          <div class="modal-info-label">MB Bank - STK</div>
+          <div class="modal-info-value">00180599999998 (BÙI CHÍ KIỆT)</div>
+        </div>
+        <button class="copy-btn" onclick="copyText('00180599999998', 'STK')">📋</button>
+      </div>
+      
+      <!-- QR Code MB Bank -->
+      <div style="text-align: center; margin: 16px 0 8px; padding: 16px; background: #fff; border-radius: 16px; border: 2px dashed #e2e8f0;">
+        <div style="font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 14px; color: #1e293b; margin-bottom: 10px;">
+          📱 Quét QR để chuyển khoản
+        </div>
+        <div style="display: inline-block; padding: 8px; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+          <img src="qr-mbbank.png" alt="QR MB Bank" style="width: 180px; height: 180px; display: block; border-radius: 8px;" />
+        </div>
+        <div style="margin-top: 10px; font-size: 12px; color: #64748b; font-weight: 600;">
+          💡 Quét mã hoặc nhấn nút <span style="color: #ef4444;">📋</span> để copy STK
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">
+        📞 Liên Hệ Trực Tiếp
+      </div>
+      <div class="modal-info-row discord">
+        <div class="modal-info-icon">🎮</div>
+        <div style="flex: 1;">
+          <div class="modal-info-label">Discord Server</div>
+          <div class="modal-info-value"><a href="https://discord.gg/sfvJayPCT" target="_blank">discord.gg/sfvJayPCT</a></div>
+        </div>
+        <a href="https://discord.gg/sfvJayPCT" target="_blank" class="copy-btn" style="background: #5865F2;">💬</a>
+      </div>
+      <div class="modal-info-row discord">
+        <div class="modal-info-icon">👤</div>
+        <div style="flex: 1;">
+          <div class="modal-info-label">Discord User</div>
+          <div class="modal-info-value">bo1805</div>
+        </div>
+        <button class="copy-btn" onclick="copyText('bo1805', 'Discord')">📋</button>
+      </div>
+      <div class="modal-info-row zalo">
+        <div class="modal-info-icon">📞</div>
+        <div style="flex: 1;">
+          <div class="modal-info-label">Zalo / Điện thoại</div>
+          <div class="modal-info-value"><a href="https://zalo.me/0328680584" target="_blank">0328680584</a></div>
+        </div>
+        <a href="https://zalo.me/0328680584" target="_blank" class="copy-btn" style="background: #0068ff;">📞</a>
+      </div>
+      <div class="modal-info-row facebook">
+        <div class="modal-info-icon">📘</div>
+        <div style="flex: 1;">
+          <div class="modal-info-label">Facebook</div>
+          <div class="modal-info-value"><a href="https://www.facebook.com/profile.php?id=61593682910287" target="_blank">Bùi Chí Kiệt</a></div>
+        </div>
+        <a href="https://www.facebook.com/profile.php?id=61593682910287" target="_blank" class="copy-btn fb">📘</a>
+      </div>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">
+        🎮 Tải Game & Chơi Ngay
+      </div>
+      <a href="https://drive.google.com/file/d/1FKFl8TKQN8LF0QTmn8XglMtOaJov6FHj/view?usp=sharing" target="_blank" class="modal-cta" style="background: linear-gradient(135deg, var(--leaf), var(--leaf-dark));">
+        📱 TẢI APK MIỄN PHÍ
+      </a>
+      <a href="https://nongtrai-vn-2.onrender.com/" target="_blank" class="modal-cta" style="background: linear-gradient(135deg, var(--sun-deep), var(--orange)); box-shadow: 0 6px 0 #e65100, 0 8px 20px rgba(255, 152, 0, 0.4);">
+        🌐 CHƠI TRÊN WEB
+      </a>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px; padding-top: 16px; border-top: 2px dashed #ffe0b2;">
+      <button onclick="closeInfoModal()" style="background: linear-gradient(135deg, var(--leaf), var(--leaf-dark)); color: #fff; border: none; padding: 12px 32px; border-radius: 30px; font-family: 'Fredoka', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 0 var(--leaf-dark), 0 6px 12px rgba(76, 175, 80, 0.3); transition: all 0.2s;">
+        ✅ ĐÃ HIỂU - ĐÓNG LẠI
+      </button>
+      <p style="font-size: 11px; color: #8d6e63; margin-top: 8px; font-weight: 600;">
+        🌻 Bảng thông tin này sẽ không tự hiện lại sau khi đóng 🌻
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <img src="logo-nongtraivn.svg" alt="NôngTrạiVN" class="logo-icon" style="width: 40px; height: 40px; border-radius: 10px;" />
+      <span class="logo-text">NôngTrại <span class="highlight">VN</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#features">Tính năng</a>
+      <a href="#download">Tải APK</a>
+      <a href="#howto">Hướng dẫn</a>
+      <a href="#admin">Liên hệ Admin</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-logo">
+      <img src="logo-nongtraivn.svg" alt="NôngTrạiVN Logo" style="width: clamp(120px, 18vw, 180px); height: auto; filter: drop-shadow(0 8px 16px rgba(245, 158, 11, 0.4));" />
+    </div>
+    <div class="hero-badge">🌻 VIETNAM'S FAVORITE FARM GAME 🌻</div>
+    
+    <h1 class="hero-title">
+      Nông Trại <span class="accent">Vui Vẻ</span>
+    </h1>
+    
+    <p class="hero-subtitle">
+      Game nông trại pixel đáng yêu - Trồng cây, nuôi cá, xây nhà, kết bạn và khám phá thế giới cùng <b>hàng ngàn game thủ Việt</b>! 🌻🐔🐄
+    </p>
+
+    <div class="stats-bar">
+      <div class="stat-card online">
+        <div class="stat-icon">🌻</div>
+        <div class="stat-value"><span class="live-dot"></span><span id="online-count">0</span></div>
+        <div class="stat-label">Đang Online</div>
+      </div>
+      <div class="stat-card visits">
+        <div class="stat-icon">🚜</div>
+        <div class="stat-value counting" id="visit-count">0</div>
+        <div class="stat-label">Lượt Ghé Thăm</div>
+      </div>
+      <div class="stat-card downloads">
+        <div class="stat-icon">📦</div>
+        <div class="stat-value counting" id="download-count">0</div>
+        <div class="stat-label">Lượt Tải</div>
+      </div>
+    </div>
+
+    <div>
+      <a href="https://drive.google.com/file/d/1FKFl8TKQN8LF0QTmn8XglMtOaJov6FHj/view?usp=sharing" target="_blank" rel="noopener" class="dl-btn-mega">
+        📱 TẢI APK NGAY
+      </a>
+    </div>
+    <div>
+      <a href="https://nongtrai-vn-2.onrender.com/" target="_blank" rel="noopener" class="dl-btn-mega dl-btn-web">
+        🌐 CHƠI TRÊN WEB
+      </a>
+      <a href="https://discord.gg/sfvJayPCT" target="_blank" rel="noopener" class="dl-btn-mega dl-btn-discord">
+        🎮 THAM GIA DISCORD
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Slideshow -->
+<section class="slideshow-section">
+  <h2 class="section-title" style="color: #fff;">
+    <span class="deco">📸</span> Khám Phá <span class="accent" style="color: #fbbf24;">Nông Trại</span> <span class="deco">📸</span>
+  </h2>
+  <p class="section-sub" style="color: #cbd5e1;">Những hình ảnh đẹp nhất từ game 🌻</p>
+  <div class="slideshow-container">
+    <div class="slideshow" id="slideshow">
+      <div class="slide slide-1">
+        🌱
+        <div class="slide-overlay">
+          <div>
+            <div class="slide-title">Trồng Trọt Đa Dạng</div>
+            <div class="slide-subtitle">15+ loại cây trồng với thời gian thu hoạch khác nhau</div>
+          </div>
+        </div>
+      </div>
+      <div class="slide slide-2">
+        🍳
+        <div class="slide-overlay">
+          <div>
+            <div class="slide-title">Nấu Ăn Sáng Tạo</div>
+            <div class="slide-subtitle">Chế biến 12+ món ăn ngon để tăng XP và hồi máu</div>
+          </div>
+        </div>
+      </div>
+      <div class="slide slide-3">
+        🐔
+        <div class="slide-overlay">
+          <div>
+            <div class="slide-title">Thú Cưng Đáng Yêu</div>
+            <div class="slide-subtitle">12+ thú cưng đi theo bạn khắp nông trại</div>
+          </div>
+        </div>
+      </div>
+      <div class="slide slide-4">
+        🏡
+        <div class="slide-overlay">
+          <div>
+            <div class="slide-title">Xây Dựng & Trang Trí</div>
+            <div class="slide-subtitle">30+ đồ nội thất tạo nên ngôi nhà mơ ước</div>
+          </div>
+        </div>
+      </div>
+      <div class="slide slide-5">
+        👨‍🌾
+        <div class="slide-overlay">
+          <div>
+            <div class="slide-title">Cộng Đồng Sôi Động</div>
+            <div class="slide-subtitle">Gặp gỡ, kết bạn, thi đấu cùng 1000+ game thủ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="slide-nav prev" onclick="changeSlide(-1)">‹</button>
+    <button class="slide-nav next" onclick="changeSlide(1)">›</button>
+    <div class="slide-dots" id="slide-dots"></div>
+  </div>
+</section>
+
+<!-- Features -->
+<section id="features" class="section section-wood">
+  <h2 class="section-title">
+    <span class="deco">🌾</span> Tính Năng <span class="accent">Nông Trại</span> <span class="deco">🌾</span>
+  </h2>
+  <p class="section-sub">Tất cả những gì bạn cần cho một nông trại hoàn hảo 🌻</p>
+  
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🌱</div>
+      <h3 class="feature-title">Trồng Trọt</h3>
+      <p class="feature-desc">15+ loại cây: cà rốt, cà chua, dưa hấu, hoa hướng dương... Thu hoạch theo thời gian thực.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎣</div>
+      <h3 class="feature-title">Câu Cá</h3>
+      <p class="feature-desc">20+ loài cá, 4 loại cần câu, vựa cá riêng. Câu cá nấu ăn hoặc bán kiếm xu.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🍳</div>
+      <h3 class="feature-title">Nấu Ăn</h3>
+      <p class="feature-desc">12+ công thức nấu ăn: pizza, sushi, bánh mì, cocktail. Tăng XP và hồi máu.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🏡</div>
+      <h3 class="feature-title">Xây Nhà</h3>
+      <p class="feature-desc">Nâng cấp nhà 5 cấp, trang trí 30+ đồ nội thất độc đáo theo phong cách riêng.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🚜</div>
+      <h3 class="feature-title">Phương Tiện</h3>
+      <p class="feature-desc">10+ loại xe từ xe đạp đến máy bay. Di chuyển nhanh giữa các cánh đồng.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🐔</div>
+      <h3 class="feature-title">Thú Cưng</h3>
+      <p class="feature-desc">12+ thú cưng đáng yêu: chó, mèo, thỏ, khỉ, rồng nhỏ đi theo bạn khắp nông trại.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">👨‍🌾</div>
+      <h3 class="feature-title">Online PVP</h3>
+      <p class="feature-desc">Gặp gỡ, chat, tặng quà và thi đấu với bạn bè qua WebSocket thời gian thực.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎰</div>
+      <h3 class="feature-title">Mini-Game</h3>
+      <p class="feature-desc">Xèng quay, tài xỉu, đua xe, đấu boss. Cơ hội nhân đôi xu mỗi ngày.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🏆</div>
+      <h3 class="feature-title">Sự Kiện</h3>
+      <p class="feature-desc">50+ nhiệm vụ, bảng xếp hạng, sự kiện Halloween, Tết với phần thưởng giá trị.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Download Info -->
+<section id="download" class="section">
+  <h2 class="section-title">
+    <span class="deco">📦</span> Thông Tin <span class="accent">Tải Game</span> <span class="deco">📦</span>
+  </h2>
+  <p class="section-sub">Phiên bản APK mới nhất cho Android 🤖</p>
+  
+  <div class="info-grid">
+    <div class="info-item">
+      <div class="info-label">📦 Phiên bản</div>
+      <div class="info-value">v1.0.0 Stable</div>
+    </div>
+    <div class="info-item">
+      <div class="info-label">📏 Dung lượng</div>
+      <div class="info-value">~15 MB</div>
+    </div>
+    <div class="info-item">
+      <div class="info-label">🤖 Android</div>
+      <div class="info-value">5.0 trở lên</div>
+    </div>
+    <div class="info-item">
+      <div class="info-label">💾 Cài đặt</div>
+      <div class="info-value">Unknown Sources</div>
+    </div>
+    <div class="info-item">
+      <div class="info-label">🌐 Ngôn ngữ</div>
+      <div class="info-value">Tiếng Việt 100%</div>
+    </div>
+    <div class="info-item">
+      <div class="info-label">💰 Giá</div>
+      <div class="info-value">Miễn phí vĩnh viễn</div>
+    </div>
+  </div>
+
+  <div style="text-align: center; margin-top: 48px;">
+    <a href="https://drive.google.com/file/d/1FKFl8TKQN8LF0QTmn8XglMtOaJov6FHj/view?usp=sharing" target="_blank" rel="noopener" class="dl-btn-mega">
+      📱 TẢI APK TỪ GOOGLE DRIVE
+    </a>
+  </div>
+</section>
+
+<!-- Leaderboard -->
+<section class="leaderboard-section">
+  <h2 class="section-title">
+    <span class="deco">🏆</span> Bảng Xếp Hạng <span class="accent">TOP 10</span> <span class="deco">🏆</span>
+  </h2>
+  <p class="section-sub">Những nông dân xuất sắc nhất tuần này 🌻</p>
+  
+  <div class="leaderboard-card">
+    <div class="leaderboard-list" id="leaderboard-list">
+      <!-- Filled by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- Install Steps -->
+<section id="howto" class="section section-wood">
+  <h2 class="section-title">
+    <span class="deco">🌾</span> Hướng Dẫn <span class="accent">Cài Đặt</span> <span class="deco">🌾</span>
+  </h2>
+  <p class="section-sub">Chỉ với 4 bước đơn giản 🌻</p>
+  
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-icon">📱</div>
+      <h3 class="step-title">Tải APK</h3>
+      <p class="step-desc">Nhấn nút "Tải APK" ở trên. File sẽ được tải từ Google Drive an toàn.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-icon">⚙️</div>
+      <h3 class="step-title">Cho Phép Cài Đặt</h3>
+      <p class="step-desc">Vào Cài đặt → Bảo mật → Bật "Nguồn không xác định" (Unknown Sources).</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-icon">📥</div>
+      <h3 class="step-title">Cài Đặt</h3>
+      <p class="step-desc">Mở file APK đã tải về và nhấn "Cài đặt". Chờ vài giây để hoàn tất.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-icon">🎮</div>
+      <h3 class="step-title">Chơi Game</h3>
+      <p class="step-desc">Mở app, đăng nhập Discord/Google và bắt đầu hành trình nông trại của bạn!</p>
+    </div>
+  </div>
+</section>
+
+<!-- Admin Section -->
+<section id="admin" class="admin-section">
+  <div class="admin-card">
+    <h2 class="section-title" style="margin-top: 16px;">
+      <span class="deco">👨‍🌾</span> Liên Hệ <span class="accent">Admin</span> <span class="deco">👨‍🌾</span>
+    </h2>
+    <p class="section-sub">Hỗ trợ, ủng hộ server và liên hệ trực tiếp với tác giả 🌻</p>
+    
+    <div class="admin-grid">
+      <div class="qr-box">
+        <img id="qr-img" class="qr-image" alt="QR MB Bank" />
+        <div class="qr-label">
+          Quét QR để <br><b>ủng hộ Admin 🌻</b>
+        </div>
+      </div>
+
+      <div class="admin-info">
+        <div class="admin-row">
+          <div class="admin-icon">👨‍🌾</div>
+          <div class="admin-text">
+            <div class="admin-label">Admin / Tác giả</div>
+            <div class="admin-value">
+              Bùi Chí Kiệt
+              <small>Người sáng lập & phát triển Nông Trại Online</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-row bank">
+          <div class="admin-icon">🏦</div>
+          <div class="admin-text">
+            <div class="admin-label">Ngân hàng MB Bank</div>
+            <div class="admin-value">
+              <span id="bank-stk">00180599999998</span>
+              <small>Chủ TK: BÙI CHÍ KIỆT • Nội dung: UNGHO NONG TRAI</small>
+            </div>
+          </div>
+          <button class="copy-btn" onclick="copyText('00180599999998', 'STK')">📋 Copy</button>
+        </div>
+
+        <div class="admin-row discord">
+          <div class="admin-icon">🎮</div>
+          <div class="admin-text">
+            <div class="admin-label">Discord</div>
+            <div class="admin-value">
+              <a href="https://discord.gg/sfvJayPCT" target="_blank" rel="noopener" style="color: #5865F2; text-decoration: none;">bo1805</a>
+              <small>Tham gia server Discord để chat với Admin 🎮</small>
+            </div>
+          </div>
+          <a href="https://discord.gg/sfvJayPCT" target="_blank" rel="noopener" class="copy-btn" style="background: #5865F2;">💬 Chat</a>
+        </div>
+
+        <div class="admin-row zalo">
+          <div class="admin-icon">📞</div>
+          <div class="admin-text">
+            <div class="admin-label">Zalo / Điện thoại</div>
+            <div class="admin-value">
+              <a href="https://zalo.me/0328680584" target="_blank" rel="noopener" style="color: #0068ff; text-decoration: none;">0328680584</a>
+              <small>Gọi/Zalo trực tiếp để được hỗ trợ nhanh nhất 📞</small>
+            </div>
+          </div>
+          <a href="https://zalo.me/0328680584" target="_blank" rel="noopener" class="copy-btn" style="background: #0068ff;">📞 Gọi</a>
+        </div>
+
+        <div class="admin-row facebook">
+          <div class="admin-icon">📘</div>
+          <div class="admin-text">
+            <div class="admin-label">Facebook</div>
+            <div class="admin-value">
+              <a href="https://www.facebook.com/profile.php?id=61593682910287" target="_blank" rel="noopener" style="color: #1877f2; text-decoration: none;">Bùi Chí Kiệt</a>
+              <small>Kết bạn Facebook để cập nhật tin tức mới nhất 📘</small>
+            </div>
+          </div>
+          <a href="https://www.facebook.com/profile.php?id=61593682910287" target="_blank" rel="noopener" class="copy-btn fb">📘 Xem</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Donate Section -->
+<section class="donate-section">
+  <h2 class="section-title">
+    <span class="deco">💝</span> Ủng Hộ <span class="accent">Admin</span> <span class="deco">💝</span>
+  </h2>
+  <p class="section-sub">Quét QR hoặc chuyển khoản để ủng hộ server hoạt động ổn định 🌻</p>
+  
+  <div class="donate-container">
+    <div class="donate-qr">
+      <div class="donate-qr-box">
+        <img src="qr-mbbank.png" alt="QR MB Bank Ủng Hộ" />
+      </div>
+      <div class="donate-qr-caption">📱 Mở app ngân hàng → Quét mã</div>
+    </div>
+
+    <div class="donate-info">
+      <div class="donate-title">
+        <span class="donate-emoji">💖</span>
+        <span>Cảm ơn bạn đã ủng hộ!</span>
+      </div>
+      <p class="donate-subtitle">
+        Mỗi đóng góp của bạn đều giúp server hoạt động mượt mà, phát triển thêm nhiều tính năng mới và duy trì cộng đồng Nông Trại Online 🌻
+      </p>
+
+      <div class="donate-bank-card">
+        <div class="donate-bank-row">
+          <div class="donate-bank-label">🏦 Ngân hàng</div>
+          <div class="donate-bank-value">MB Bank</div>
+        </div>
+        <div class="donate-bank-row">
+          <div class="donate-bank-label">💳 Số tài khoản</div>
+          <div class="donate-bank-value">
+            <span>00180599999998</span>
+            <button class="donate-copy" onclick="copyText('00180599999998', 'STK')" title="Copy STK">📋</button>
+          </div>
+        </div>
+        <div class="donate-bank-row">
+          <div class="donate-bank-label">👤 Chủ tài khoản</div>
+          <div class="donate-bank-value">BÙI CHÍ KIỆT</div>
+        </div>
+        <div class="donate-bank-row">
+          <div class="donate-bank-label">📝 Nội dung CK</div>
+          <div class="donate-bank-value">
+            <span>UNGHO NONG TRAI</span>
+            <button class="donate-copy" onclick="copyText('UNGHO NONG TRAI', 'Nội dung')" title="Copy nội dung">📋</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="donate-stats">
+        <div class="donate-stat">
+          <div class="donate-stat-num">🎯 100%</div>
+          <div class="donate-stat-label">Minh bạch</div>
+        </div>
+        <div class="donate-stat">
+          <div class="donate-stat-num">⚡ 24/7</div>
+          <div class="donate-stat-label">Server online</div>
+        </div>
+        <div class="donate-stat">
+          <div class="donate-stat-num">💖 100+</div>
+          <div class="donate-stat-label">Đã ủng hộ</div>
+        </div>
+      </div>
+
+      <div class="donate-note" style="margin-top: 16px;">
+        ⭐ Admin cam kết 100% số tiền ủng hộ sẽ được sử dụng để duy trì server, hosting và phát triển game ⭐
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-box">
+    <div class="cta-deco">🌻</div>
+    <h2 class="cta-title">Sẵn Sàng Làm Nông Trại?</h2>
+    <p class="cta-sub">Cộng đồng <b>1000+ game thủ Việt</b> đang chờ bạn! 🌻🐔🚜</p>
+    
+    <a href="https://discord.gg/sfvJayPCT" target="_blank" rel="noopener" class="dl-btn-mega dl-btn-discord" style="margin: 8px;">
+      🎮 THAM GIA DISCORD NGAY
+    </a>
+    <br>
+    <a href="https://nongtrai-vn-2.onrender.com/" target="_blank" rel="noopener" class="dl-btn-mega dl-btn-web" style="margin: 8px;">
+      🌐 HOẶC CHƠI TRÊN WEB
+    </a>
+
+    <!-- Share Bar -->
+    <div class="share-bar">
+      <div class="share-bar-title">🌟 Chia sẻ Nông Trại Online cho bạn bè nhé! 🌟</div>
+      <div class="share-buttons">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(window.location.href) target="_blank" class="share-btn fb" title="Chia sẻ Facebook">📘</a>
+        <a href="https://zalo.me/share?u=" + encodeURIComponent(window.location.href) target="_blank" class="share-btn zalo" title="Chia sẻ Zalo">💬</a>
+        <a href="https://discord.com/channels/@me" target="_blank" class="share-btn discord" title="Chia sẻ Discord">🎮</a>
+        <a href="https://twitter.com/intent/tweet?text=" + encodeURIComponent('🌱 Chơi Nông Trại Online - Game nông trại pixel Việt Nam!') + "&url=" + encodeURIComponent(window.location.href) target="_blank" class="share-btn twitter" title="Chia sẻ Twitter">🐦</a>
+        <button class="share-btn copy" onclick="copyShareLink()" title="Copy link">📋</button>
+        <button class="share-btn native" onclick="nativeShare()" title="Chia sẻ">📤</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- News/Blog Section -->
+<section class="news-section">
+  <h2 class="section-title">
+    <span class="deco">📰</span> Tin Tức & <span class="accent">Cập Nhật</span> <span class="deco">📰</span>
+  </h2>
+  <p class="section-sub">Những tin tức mới nhất về Nông Trại Online 🌻</p>
+  
+  <div class="news-grid">
+    <article class="news-card">
+      <div class="news-image news-image-1">
+        🎃
+        <span class="news-badge new">MỚI</span>
+      </div>
+      <div class="news-content">
+        <div class="news-date">📅 13/10/2026</div>
+        <h3 class="news-title">Sự kiện Halloween 2026 đã chính thức ra mắt!</h3>
+        <p class="news-excerpt">Tham gia sự kiện Halloween với hàng trăm phần quà hấp dẫn: trang phục ma quái, vật phẩm hiếm và pet bí ngô độc quyền...</p>
+        <a href="#" class="news-read-more">Đọc tiếp →</a>
+      </div>
+    </article>
+
+    <article class="news-card">
+      <div class="news-image news-image-2">
+        🎮
+        <span class="news-badge hot">HOT</span>
+      </div>
+      <div class="news-content">
+        <div class="news-date">📅 10/10/2026</div>
+        <h3 class="news-title">Bản cập nhật 1.0.0 - Season 1 chính thức!</h3>
+        <p class="news-excerpt">Season 1 mang đến 15+ tính năng mới: bảng xếp hạng, dark mode, chat widget, slideshow khám phá và nhiều điều thú vị...</p>
+        <a href="#" class="news-read-more">Đọc tiếp →</a>
+      </div>
+    </article>
+
+    <article class="news-card">
+      <div class="news-image news-image-3">
+        🏆
+        <span class="news-badge">SỰ KIỆN</span>
+      </div>
+      <div class="news-content">
+        <div class="news-date">📅 08/10/2026</div>
+        <h3 class="news-title">Giải đấu Nông Dân Vàng 2026 - Tổng giải thưởng 10 triệu xu</h3>
+        <p class="news-excerpt">Đăng ký tham gia giải đấu PvP lớn nhất trong năm. Top 3 sẽ nhận được danh hiệu độc quyền và phần thưởng giá trị...</p>
+        <a href="#" class="news-read-more">Đọc tiếp →</a>
+      </div>
+    </article>
+
+    <article class="news-card">
+      <div class="news-image news-image-4">
+        🐉
+        <span class="news-badge new">MỚI</span>
+      </div>
+      <div class="news-content">
+        <div class="news-date">📅 05/10/2026</div>
+        <h3 class="news-title">Pet Rồng Huyền Thoại đã xuất hiện trong game!</h3>
+        <p class="news-excerpt">Rồng nhỏ đáng yêu với sức mạnh huyền thoại, có thể giúp bạn tăng gấp đôi thu hoạch và tự động tưới cây...</p>
+        <a href="#" class="news-read-more">Đọc tiếp →</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ WEATHER WIDGET (THỜI TIẾT NÔNG TRẠI) ============ -->
+<section class="weather-section" id="weather">
+  <div class="weather-header">
+    <h2 class="section-title">
+      <span class="deco">🌤️</span> Thời Tiết <span class="accent">Nông Trại</span> <span class="deco">🌾</span>
+    </h2>
+    <p class="section-sub">Cập nhật theo giờ thực Việt Nam • Ảnh hưởng trực tiếp đến cây trồng 🌻</p>
+  </div>
+
+  <div class="weather-card-main" id="weather-card-main">
+    <div class="weather-scene" id="weather-scene">
+      <div class="weather-sun" id="weather-sun">☀️</div>
+      <div class="weather-moon" id="weather-moon">🌙</div>
+      <div class="weather-cloud cloud-1" id="weather-cloud-1">☁️</div>
+      <div class="weather-cloud cloud-2" id="weather-cloud-2">⛅</div>
+      <div class="weather-rain" id="weather-rain"></div>
+      <div class="weather-stars" id="weather-stars"></div>
+    </div>
+
+    <div class="weather-info">
+      <div class="weather-temp" id="weather-temp">--°</div>
+      <div class="weather-condition" id="weather-condition">Đang tải...</div>
+      <div class="weather-location">📍 Nông Trại Online, Việt Nam</div>
+      <div class="weather-time" id="weather-time">--:--</div>
+    </div>
+
+    <div class="weather-effects" id="weather-effects">
+      <div class="effect-item" data-effect="grow"><span>🌱</span> Cây phát triển</div>
+      <div class="effect-item" data-effect="water"><span>💧</span> Độ ẩm đất</div>
+      <div class="effect-item" data-effect="fish"><span>🐟</span> Cá cắn câu</div>
+      <div class="effect-item" data-effect="pest"><span>🐛</span> Sâu bệnh</div>
+    </div>
+  </div>
+
+  <div class="weather-forecast" id="weather-forecast">
+    <!-- 7 ngày dự báo render bằng JS -->
+  </div>
+
+  <div class="weather-tips" id="weather-tips">
+    <h3>💡 Mẹo Canh Tác Hôm Nay</h3>
+    <div class="weather-tip-content" id="weather-tip-content">Đang tải...</div>
+  </div>
+
+  <div class="weather-farming">
+    <h3>🌾 Lịch Thời Vụ Gieo Trồng</h3>
+    <div class="farming-grid" id="farming-grid">
+      <div class="farming-card" data-season="spring">
+        <div class="farming-season">🌸 Xuân</div>
+        <div class="farming-crops">🌾 Lúa, 🥕 Cà rốt, 🌽 Ngô, 🍅 Cà chua</div>
+        <div class="farming-month">T1 - T3</div>
+      </div>
+      <div class="farming-card" data-season="summer">
+        <div class="farming-season">☀️ Hạ</div>
+        <div class="farming-crops">🍉 Dưa hấu, 🥒 Dưa chuột, 🌻 Hướng dương, 🥭 Xoài</div>
+        <div class="farming-month">T4 - T6</div>
+      </div>
+      <div class="farming-card" data-season="autumn">
+        <div class="farming-season">🍂 Thu</div>
+        <div class="farming-crops">🌾 Lúa mì, 🍎 Táo, 🥜 Lạc, 🎃 Bí ngô</div>
+        <div class="farming-month">T7 - T9</div>
+      </div>
+      <div class="farming-card" data-season="winter">
+        <div class="farming-season">❄️ Đông</div>
+        <div class="farming-crops">🥔 Khoai tây, 🥬 Bắp cải, 🌶️ Ớt, 🧄 Tỏi</div>
+        <div class="farming-month">T10 - T12</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section">
+  <h2 class="section-title">
+    <span class="deco">❓</span> Câu Hỏi <span class="accent">Thường Gặp</span> <span class="deco">❓</span>
+  </h2>
+  <p class="section-sub">Giải đáp những thắc mắc phổ biến nhất 🌻</p>
+  
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <div class="faq-icon">?</div>
+        <div class="faq-text">Game có miễn phí không? Có quảng cáo không?</div>
+        <div class="faq-arrow">▼</div>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          🌻 <b>Hoàn toàn miễn phí 100%</b>! Game không có quảng cáo, không có mua hàng trong ứng dụng, không cần nạp tiền. Mọi tính năng đều mở khóa. Bạn chỉ cần tải về và chơi thôi!
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <div class="faq-icon">?</div>
+        <div class="faq-text">Có thể chơi Nông Trại Online trên iOS không?</div>
+        <div class="faq-arrow">▼</div>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          📱 Hiện tại bản APK chỉ dành cho <b>Android 5.0 trở lên</b>. Tuy nhiên, bạn có thể chơi ngay trên <b>trình duyệt web</b> tại nongtrai-vn-2.onrender.com - hoạt động mượt mà trên cả iOS, Android và PC!
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <div class="faq-icon">?</div>
+        <div class="faq-text">Làm sao để đăng nhập và lưu tiến trình?</div>
+        <div class="faq-arrow">▼</div>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          🎮 Bạn có thể đăng nhập bằng <b>Discord</b> hoặc <b>Google</b>. Tiến trình game sẽ được lưu tự động trên cloud, giúp bạn chơi liền mạch trên nhiều thiết bị mà không lo mất dữ liệu.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <div class="faq-icon">?</div>
+        <div class="faq-text">Game có hỗ trợ chơi online với bạn bè không?</div>
+        <div class="faq-arrow">▼</div>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          👨‍🌾 Có! Game hỗ trợ <b>chế độ PvP thời gian thực</b> qua WebSocket. Bạn có thể gặp gỡ, trò chuyện, tặng quà và thi đấu với hàng ngàn người chơi khác trên server Discord của chúng tôi.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <div class="faq-icon">?</div>
+        <div class="faq-text">Tôi muốn ủng hộ Admin, làm sao?</div>
+        <div class="faq-arrow">▼</div>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          💝 Cảm ơn bạn rất nhiều! Bạn có thể ủng hộ qua:
+          <br>🏦 <b>MB Bank: 00180599999998</b> (BÙI CHÍ KIỆT)
+          <br>📝 Nội dung: <b>UNGHO NONG TRAI</b>
+          <br>Hoặc quét QR code trong phần "Liên hệ Admin". Mọi sự ủng hộ đều giúp server hoạt động ổn định hơn! 🌻
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <div class="faq-icon">?</div>
+        <div class="faq-text">Game bị lỗi / không vào được, xử lý sao?</div>
+        <div class="faq-arrow">▼</div>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          🔧 Nếu gặp lỗi, hãy thử:
+          <br>1️⃣ Khởi động lại game và thiết bị
+          <br>2️⃣ Xóa cache (Settings → Apps → Nông Trại Online → Clear Cache)
+          <br>3️⃣ Cập nhật lên phiên bản mới nhất
+          <br>4️⃣ Liên hệ Admin qua Discord <b>bo1805</b> hoặc Zalo <b>0328680584</b> để được hỗ trợ trực tiếp!
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Feedback Form -->
+<section class="feedback-section">
+  <h2 class="section-title">
+    <span class="deco">💌</span> Gửi Đánh Giá <span class="accent">Của Bạn</span> <span class="deco">💌</span>
+  </h2>
+  <p class="section-sub">Ý kiến của bạn giúp Admin phát triển game tốt hơn 🌻</p>
+  
+  <div class="feedback-card">
+    <form class="feedback-form" onsubmit="submitFeedback(event)">
+      <div style="text-align: center; margin-bottom: 12px;">
+        <span style="font-weight: 700; color: #1e293b;" id="rating-text">Chạm để chọn số sao ⭐</span>
+      </div>
+      <div class="star-rating" id="star-rating">
+        <span class="star" data-value="1" onclick="setRating(1)">★</span>
+        <span class="star" data-value="2" onclick="setRating(2)">★</span>
+        <span class="star" data-value="3" onclick="setRating(3)">★</span>
+        <span class="star" data-value="4" onclick="setRating(4)">★</span>
+        <span class="star" data-value="5" onclick="setRating(5)">★</span>
+      </div>
+      <div class="form-group">
+        <label>👤 Tên của bạn</label>
+        <input type="text" id="fb-name" placeholder="Nhập tên hoặc nickname..." required>
+      </div>
+      <div class="form-group">
+        <label>💬 Nhận xét của bạn</label>
+        <textarea id="fb-message" placeholder="Chia sẻ cảm nhận, góp ý hoặc báo lỗi..." required></textarea>
+      </div>
+      <button type="submit" class="form-submit">📤 GỬI ĐÁNH GIÁ</button>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-logo" style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 8px;">
+      <img src="logo-nongtraivn.svg" alt="NôngTrạiVN" style="width: 48px; height: 48px; border-radius: 12px; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);" />
+      <span>🌻 NôngTrạiVN.online 🌻</span>
+    </div>
+    <div class="footer-links">
+      <a href="https://discord.gg/sfvJayPCT" target="_blank" rel="noopener" class="footer-link">🎮 Discord</a>
+      <a href="https://nongtrai-vn-2.onrender.com/" target="_blank" rel="noopener" class="footer-link">🌐 Web</a>
+      <a href="https://drive.google.com/file/d/1FKFl8TKQN8LF0QTmn8XglMtOaJov6FHj/view?usp=sharing" target="_blank" rel="noopener" class="footer-link">📱 APK</a>
+      <a href="#admin" class="footer-link">👨‍🌾 Admin</a>
+      <a href="https://www.facebook.com/profile.php?id=61593682910287" target="_blank" rel="noopener" class="footer-link">📘 Facebook</a>
+    </div>
+    <p class="footer-author">Made with ❤️ by <b>Bùi Chí Kiệt</b></p>
+    <p class="footer-copy">© 2026 Nông Trại Online • Made in Vietnam 🌻</p>
+  </div>
+</footer>
+
+<!-- Toast -->
+<div class="toast" id="toast">✅ Đã sao chép!</div>
+
+<!-- ============ HIDDEN AUDIO (NHẠC NỀN) ============ -->
+<!-- Dùng SoundCloud embed qua iframe ẩn để bypass autoplay restriction -->
+<iframe id="sc-player" width="0" height="0" style="position:absolute;left:-9999px;visibility:hidden;" allow="autoplay" src=""></iframe>
+
+<script>
+/* ============ MODAL (TỰ ĐỘNG MỞ) ============ */
+function openInfoModal() {
+  document.getElementById('info-modal').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeInfoModal(e) {
+  if (e && e.target !== e.currentTarget) return;
+  document.getElementById('info-modal').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeInfoModal();
+});
+
+// Tự động mở modal khi vào web (LUÔN mở mỗi lần)
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    openInfoModal();
+  }, 1200);
+});
+
+/* ============ COPY ============ */
+function copyText(text, label) {
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('✅ Đã copy ' + label + ': ' + text);
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast('✅ Đã copy ' + label + ': ' + text);
+  });
+}
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+/* ============ MUSIC (SoundCloud) ============ */
+let musicPlaying = false;
+const SC_URL = 'https://soundcloud.com/th-ng-kh-723600485/tong-hop-nhung-bai-hat-buon-tam-trang-cua-kidz?si=4b175753697e47b5ae85401d9edbb245&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing';
+
+// SoundCloud không cho phát trực tiếp từ URL, dùng API widget
+const SC_WIDGET_API = 'https://w.soundcloud.com/player/api.js';
+let scPlayer = null;
+
+function loadSCWidget() {
+  if (window.SC) return Promise.resolve();
+  return new Promise((resolve, reject) => {
+    if (document.getElementById('sc-widget-script')) {
+      const checkInterval = setInterval(() => {
+        if (window.SC) { clearInterval(checkInterval); resolve(); }
+      }, 100);
+      return;
+    }
+    const s = document.createElement('script');
+    s.id = 'sc-widget-script';
+    s.src = SC_WIDGET_API;
+    s.onload = () => {
+      const checkInterval = setInterval(() => {
+        if (window.SC) { clearInterval(checkInterval); resolve(); }
+      }, 100);
+    };
+    s.onerror = reject;
+    document.head.appendChild(s);
+  });
+}
+
+async function toggleMusic() {
+  const btn = document.getElementById('music-btn');
+  const icon = document.getElementById('music-icon');
+  
+  if (!musicPlaying) {
+    // Bật nhạc
+    try {
+      showToast('🎵 Đang tải nhạc... Vui lòng chờ 🌻');
+      await loadSCWidget();
+      
+      // Tạo iframe widget
+      const iframe = document.getElementById('sc-player');
+      const widgetUrl = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(SC_URL) + '&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false';
+      iframe.src = widgetUrl;
+      
+      // Đợi iframe load
+      await new Promise(resolve => {
+        iframe.onload = resolve;
+        setTimeout(resolve, 3000);
+      });
+      
+      scPlayer = window.SC.Widget(iframe);
+      
+      await new Promise(resolve => {
+        scPlayer.bind(window.SC.Widget.Events.READY, () => {
+          scPlayer.play();
+          resolve();
+        });
+        setTimeout(resolve, 3000);
+      });
+      
+      musicPlaying = true;
+      btn.classList.add('playing');
+      icon.textContent = '🔊';
+      showToast('🎵 Đang phát nhạc nền 🌻');
+      
+      // Lưu state
+      localStorage.setItem('nt_music', '1');
+    } catch (e) {
+      showToast('❌ Không thể tải nhạc. Thử lại sau 🌻');
+      console.error(e);
+    }
+  } else {
+    // Tắt nhạc
+    if (scPlayer) {
+      try { scPlayer.pause(); } catch(e) {}
+    }
+    musicPlaying = false;
+    btn.classList.remove('playing');
+    icon.textContent = '🔇';
+    showToast('🔇 Đã tắt nhạc');
+    localStorage.setItem('nt_music', '0');
+  }
+}
+
+// Auto play music nếu user đã bật trước đó
+window.addEventListener('load', () => {
+  if (localStorage.getItem('nt_music') === '1') {
+    setTimeout(() => toggleMusic(), 1500);
+  }
+});
+
+/* ============ QR CODE ============ */
+const qrImg = document.getElementById('qr-img');
+if (qrImg) {
+  qrImg.src = 'https://img.vietqr.io/image/mb-00180599999998-compact2.png?accountName=BUI%20CHI%20KIET';
+  qrImg.onerror = function() {
+    this.src = 'https://img.vietqr.io/image/mb-00180599999998.png';
+  };
+}
+
+/* ============ FALLING LEAVES ============ */
+const leavesEl = document.getElementById('leaves');
+const leafEmojis = ['🍃', '🌿', '🍂', '🌾', '🌻', '🌸'];
+function createLeaf() {
+  const leaf = document.createElement('div');
+  leaf.className = 'leaf';
+  leaf.textContent = leafEmojis[Math.floor(Math.random() * leafEmojis.length)];
+  leaf.style.left = Math.random() * 100 + 'vw';
+  leaf.style.fontSize = (16 + Math.random() * 14) + 'px';
+  leaf.style.animationDuration = (12 + Math.random() * 18) + 's';
+  leaf.style.animationDelay = Math.random() * 5 + 's';
+  leaf.style.opacity = 0.6 + Math.random() * 0.4;
+  leavesEl.appendChild(leaf);
+  setTimeout(() => leaf.remove(), 30000);
+}
+for (let i = 0; i < 15; i++) setTimeout(() => createLeaf(), i * 300);
+setInterval(createLeaf, 1200);
+
+/* ============ FAKE COUNTERS ============ */
+function formatNumber(num) {
+  if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+  if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+  return num.toLocaleString('vi-VN');
+}
+const baseVisits = 127843, baseDownloads = 8521;
+let savedVisits = parseInt(localStorage.getItem('nt_visits') || baseVisits);
+let savedDownloads = parseInt(localStorage.getItem('nt_downloads') || baseDownloads);
+let savedOnline = parseInt(localStorage.getItem('nt_online') || 0);
+savedVisits += Math.floor(Math.random() * 3) + 1;
+localStorage.setItem('nt_visits', savedVisits);
+
+function animateCounter(id, target, duration = 2000) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const start = 0;
+  const startTime = performance.now();
+  function update(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = Math.floor(start + (target - start) * eased);
+    el.textContent = formatNumber(current);
+    if (progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+animateCounter('visit-count', savedVisits, 2500);
+animateCounter('download-count', savedDownloads, 2500);
+
+function updateOnline() {
+  let current = savedOnline || (234 + Math.floor(Math.random() * 253));
+  const delta = Math.floor(Math.random() * 26) - 10;
+  current = Math.max(180, Math.min(620, current + delta));
+  if (Math.random() < 0.05) current += Math.floor(Math.random() * 30) - 10;
+  savedOnline = current;
+  localStorage.setItem('nt_online', current);
+  const el = document.getElementById('online-count');
+  if (el) el.textContent = current.toLocaleString('vi-VN');
+}
+updateOnline();
+function scheduleOnlineUpdate() {
+  const delay = 3000 + Math.random() * 4000;
+  setTimeout(() => { updateOnline(); scheduleOnlineUpdate(); }, delay);
+}
+scheduleOnlineUpdate();
+
+function scheduleDownloadIncrement() {
+  const delay = 8000 + Math.random() * 15000;
+  setTimeout(() => {
+    savedDownloads += Math.floor(Math.random() * 3) + 1;
+    localStorage.setItem('nt_downloads', savedDownloads);
+    animateCounter('download-count', savedDownloads, 800);
+    scheduleDownloadIncrement();
+  }, delay);
+}
+scheduleDownloadIncrement();
+
+/* ============ SMOOTH SCROLL ============ */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    if (href === '#') return;
+    const t = document.querySelector(href);
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+
+/* ============ EASTER EGG: Click logo 5 lần ============ */
+let clickCount = 0;
+const heroLogo = document.querySelector('.hero-logo');
+if (heroLogo) {
+  heroLogo.addEventListener('click', () => {
+    clickCount++;
+    if (clickCount >= 5) {
+      showToast('🌻 Bạn thích nông trại quá! Tặng bạn 1000 xu trong game! 🌻');
+      clickCount = 0;
+    } else {
+      showToast('🌻 Click thêm ' + (5 - clickCount) + ' lần nữa nhé!');
+    }
+  });
+}
+
+/* ============ DARK MODE ============ */
+const THEME_KEY = 'nt_theme';
+function toggleTheme() {
+  const body = document.body;
+  const icon = document.getElementById('theme-icon');
+  if (body.classList.contains('dark-mode')) {
+    body.classList.remove('dark-mode');
+    icon.textContent = '🌙';
+    localStorage.setItem(THEME_KEY, 'light');
+    showToast('☀️ Đã bật Light Mode');
+  } else {
+    body.classList.add('dark-mode');
+    icon.textContent = '☀️';
+    localStorage.setItem(THEME_KEY, 'dark');
+    showToast('🌙 Đã bật Dark Mode');
+  }
+}
+// Load theme
+window.addEventListener('DOMContentLoaded', () => {
+  const theme = localStorage.getItem(THEME_KEY);
+  if (theme === 'dark') {
+    document.body.classList.add('dark-mode');
+    const icon = document.getElementById('theme-icon');
+    if (icon) icon.textContent = '☀️';
+  }
+});
+
+/* ============ UPDATE NOTIFICATION ============ */
+const NOTIF_KEY = 'nt_update_v1';
+function showUpdateNotif() {
+  if (localStorage.getItem(NOTIF_KEY)) return;
+  setTimeout(() => {
+    document.getElementById('update-notif').classList.add('show');
+    setTimeout(() => {
+      document.getElementById('update-notif').classList.remove('show');
+      localStorage.setItem(NOTIF_KEY, '1');
+    }, 8000);
+  }, 4500);
+}
+function closeUpdateNotif() {
+  document.getElementById('update-notif').classList.remove('show');
+  localStorage.setItem(NOTIF_KEY, '1');
+}
+window.addEventListener('load', showUpdateNotif);
+
+/* ============ SLIDESHOW ============ */
+let currentSlide = 0;
+const totalSlides = 5;
+const slideshowEl = document.getElementById('slideshow');
+const dotsEl = document.getElementById('slide-dots');
+
+if (dotsEl) {
+  for (let i = 0; i < totalSlides; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => goToSlide(i);
+    dotsEl.appendChild(dot);
+  }
+}
+
+function updateSlideshow() {
+  if (slideshowEl) slideshowEl.style.transform = `translateX(-${currentSlide * 100}%)`;
+  if (dotsEl) {
+    const dots = dotsEl.querySelectorAll('.slide-dot');
+    dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+  }
+}
+function changeSlide(dir) {
+  currentSlide = (currentSlide + dir + totalSlides) % totalSlides;
+  updateSlideshow();
+}
+function goToSlide(i) {
+  currentSlide = i;
+  updateSlideshow();
+}
+// Auto slide
+setInterval(() => changeSlide(1), 5000);
+
+/* ============ LEADERBOARD ============ */
+const leaderboard = [
+  { rank: 1, name: 'Bo1805', meta: '👑 Admin • Level 99', score: '2.4M xu', avatar: '👑' },
+  { rank: 2, name: 'NôngDânVuiVẻ', meta: '⭐ Level 87', score: '1.8M xu', avatar: '🌟' },
+  { rank: 3, name: 'PikachuVN', meta: '⚡ Level 76', score: '1.5M xu', avatar: '⚡' },
+  { rank: 4, name: 'TrồngCàChua', meta: '🍅 Level 68', score: '1.2M xu', avatar: '🍅' },
+  { rank: 5, name: 'CâuCáPro', meta: '🎣 Level 64', score: '1.1M xu', avatar: '🎣' },
+  { rank: 6, name: 'NấuĂnMaster', meta: '🍳 Level 61', score: '980K xu', avatar: '🍳' },
+  { rank: 7, name: 'XâyNhàĐẹp', meta: '🏡 Level 58', score: '892K xu', avatar: '🏡' },
+  { rank: 8, name: 'ThuHoạchVàng', meta: '🌾 Level 54', score: '756K xu', avatar: '🌾' },
+  { rank: 9, name: 'PetLover', meta: '🐕 Level 49', score: '634K xu', avatar: '🐕' },
+  { rank: 10, name: 'MiniGameKing', meta: '🎰 Level 45', score: '521K xu', avatar: '🎰' }
+];
+
+function renderLeaderboard() {
+  const list = document.getElementById('leaderboard-list');
+  if (!list) return;
+  list.innerHTML = '';
+  leaderboard.forEach(p => {
+    const cls = p.rank === 1 ? 'top1' : p.rank === 2 ? 'top2' : p.rank === 3 ? 'top3' : '';
+    const medal = p.rank === 1 ? '🥇' : p.rank === 2 ? '🥈' : p.rank === 3 ? '🥉' : '';
+    list.innerHTML += `
+      <div class="leaderboard-row ${cls}">
+        <div class="leaderboard-rank">${medal || '#' + p.rank}</div>
+        <div class="leaderboard-avatar">${p.avatar}</div>
+        <div class="leaderboard-info">
+          <div class="leaderboard-name">${p.name}</div>
+          <div class="leaderboard-meta">${p.meta}</div>
+        </div>
+        <div class="leaderboard-score">${p.score}</div>
+      </div>
+    `;
+  });
+}
+renderLeaderboard();
+
+/* ============ LIVE CHAT ============ */
+function toggleChat() {
+  const win = document.getElementById('chat-window');
+  win.classList.toggle('show');
+  const badge = document.querySelector('.chat-badge');
+  if (badge) badge.style.display = 'none';
+}
+
+const chatReplies = {
+  'Làm sao tải game?': '📱 Bạn nhấn nút "TẢI APK NGAY" ở trên cùng, hoặc vào Google Drive: https://drive.google.com/file/d/1FKFl8TKQN8LF0QTmn8XglMtOaJov6FHj/view?usp=sharing',
+  'Cách chơi?': '🎮 Rất đơn giản! Mở game → Đăng nhập Discord/Google → Chọn nông trại → Bắt đầu trồng cây nuôi cá thôi! 🌻',
+  'Liên hệ Admin': '📞 Bạn có thể liên hệ Admin qua:\n🎮 Discord: bo1805\n📞 Zalo: 0328680584\n📘 Facebook: Bùi Chí Kiệt',
+  'Ủng hộ Admin': '💝 Cảm ơn bạn! Bạn có thể quét QR MB Bank trong mục "Liên hệ Admin" hoặc chuyển khoản:\n🏦 MB Bank: 00180599999998\n👤 Chủ TK: BÙI CHÍ KIỆT\n💬 Nội dung: UNGHO NONG TRAI'
+};
+
+function sendChat() {
+  const input = document.getElementById('chat-input');
+  const msg = input.value.trim();
+  if (!msg) return;
+  
+  // Add user message
+  addChatMsg(msg, 'user');
+  input.value = '';
+  
+  // Show typing
+  showTyping();
+  
+  // Auto reply
+  setTimeout(() => {
+    removeTyping();
+    let reply = 'Cảm ơn bạn đã nhắn! 🌻 Mình sẽ chuyển thông tin cho Admin. Bạn có thể liên hệ trực tiếp qua Discord bo1805 hoặc Zalo 0328680584 nhé! 📞';
+    for (const key in chatReplies) {
+      if (msg.toLowerCase().includes(key.toLowerCase().slice(0, 5))) {
+        reply = chatReplies[key];
+        break;
+      }
+    }
+    addChatMsg(reply, 'admin');
+  }, 1500);
+}
+
+function sendQuick(text) {
+  document.getElementById('chat-input').value = text;
+  sendChat();
+}
+
+function addChatMsg(text, sender) {
+  const container = document.getElementById('chat-messages');
+  const time = new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
+  const avatar = sender === 'user' ? '👤' : '👨‍🌾';
+  const div = document.createElement('div');
+  div.className = 'chat-msg ' + sender;
+  div.innerHTML = `
+    <div class="chat-msg-avatar">${avatar}</div>
+    <div>
+      <div class="chat-msg-bubble">${text.replace(/\n/g, '<br>')}<div class="chat-msg-time">${time}</div></div>
+    </div>
+  `;
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+}
+
+function showTyping() {
+  const container = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = 'chat-msg';
+  div.id = 'typing-indicator';
+  div.innerHTML = `
+    <div class="chat-msg-avatar">👨‍🌾</div>
+    <div>
+      <div class="chat-msg-bubble">
+        <div class="chat-typing"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+  `;
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+}
+
+function removeTyping() {
+  const t = document.getElementById('typing-indicator');
+  if (t) t.remove();
+}
+
+/* ============ SHARE ============ */
+function copyShareLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    showToast('✅ Đã copy link! Chia sẻ cho bạn bè nhé 🌻');
+  });
+}
+
+function nativeShare() {
+  if (navigator.share) {
+    navigator.share({
+      title: '🌱 Nông Trại Online',
+      text: 'Game nông trại pixel Việt Nam cực hay! 🌻🐔🚜',
+      url: window.location.href
+    }).then(() => {
+      showToast('✅ Đã chia sẻ!');
+    }).catch(() => {});
+  } else {
+    copyShareLink();
+  }
+}
+
+// Fix the share bar buttons that use window.location
+setTimeout(() => {
+  const fbBtn = document.querySelector('.share-btn.fb');
+  const zaloBtn = document.querySelector('.share-btn.zalo');
+  const twBtn = document.querySelector('.share-btn.twitter');
+  const url = encodeURIComponent(window.location.href);
+  const text = encodeURIComponent('🌱 Chơi Nông Trại Online - Game nông trại pixel Việt Nam!');
+  if (fbBtn) fbBtn.href = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+  if (zaloBtn) zaloBtn.href = `https://zalo.me/share?u=${url}`;
+  if (twBtn) twBtn.href = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+}, 100);
+
+/* ============ FEEDBACK FORM ============ */
+let currentRating = 0;
+const ratingTexts = ['', '😞 Tệ', '😐 Tạm được', '🙂 Khá tốt', '😊 Tốt', '🤩 Tuyệt vời!'];
+function setRating(n) {
+  currentRating = n;
+  document.querySelectorAll('.star-rating .star').forEach((s, i) => {
+    s.classList.toggle('active', i < n);
+  });
+  document.getElementById('rating-text').textContent = ratingTexts[n] + ' (' + n + '/5 ⭐)';
+}
+function submitFeedback(e) {
+  e.preventDefault();
+  const name = document.getElementById('fb-name').value;
+  const message = document.getElementById('fb-message').value;
+  if (!currentRating) {
+    showToast('⚠️ Vui lòng chọn số sao đánh giá!');
+    return;
+  }
+  // Lưu feedback vào localStorage
+  const feedbacks = JSON.parse(localStorage.getItem('nt_feedbacks') || '[]');
+  feedbacks.push({ name, message, rating: currentRating, time: new Date().toISOString() });
+  localStorage.setItem('nt_feedbacks', JSON.stringify(feedbacks));
+  showToast('✅ Cảm ơn ' + name + ' đã gửi đánh giá ' + currentRating + '⭐!');
+  document.getElementById('fb-name').value = '';
+  document.getElementById('fb-message').value = '';
+  setRating(0);
+  document.getElementById('rating-text').textContent = 'Chạm để chọn số sao ⭐';
+}
+
+/* ============ FAQ ACCORDION ============ */
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  item.classList.toggle('open');
+}
+
+/* ============ NEWS ============ */
+// News cards có hiệu ứng fade-in khi scroll vào viewport
+const newsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.news-card').forEach((c, i) => {
+  c.style.opacity = '0';
+  c.style.transform = 'translateY(40px)';
+  c.style.transition = 'opacity 0.6s ' + (i * 0.1) + 's, transform 0.6s ' + (i * 0.1) + 's';
+  newsObserver.observe(c);
+});
+
+/* ============ WEATHER WIDGET (THỜI TIẾT NÔNG TRẠI) ============ */
+const WEATHER_SEED_KEY = 'nt_weather_seed';
+let weatherState = {
+  temp: 28,
+  condition: 'sunny',
+  humidity: 65,
+  wind: 8,
+  uv: 5,
+  timeOfDay: 'day',
+  season: 'autumn',
+  rainyUntil: 0,
+  effects: { grow: 100, water: 60, fish: 50, pest: 20 }
+};
+
+// Lấy/ tạo seed ổn định theo ngày để thời tiết deterministic
+function getWeatherSeed() {
+  const today = new Date().toDateString();
+  let data = {};
+  try { data = JSON.parse(localStorage.getItem(WEATHER_SEED_KEY) || '{}'); } catch(e) {}
+  if (data.date !== today) {
+    // Hash ngày thành seed
+    let h = 0;
+    for (let i = 0; i < today.length; i++) h = ((h << 5) - h) + today.charCodeAt(i);
+    data = { date: today, seed: Math.abs(h) };
+    localStorage.setItem(WEATHER_SEED_KEY, JSON.stringify(data));
+  }
+  return data.seed;
+}
+function seededRandom(seed) {
+  // PRNG đơn giản
+  let s = seed;
+  return function() {
+    s = (s * 9301 + 49297) % 233280;
+    return s / 233280;
+  };
+}
+
+// Tính thời tiết hiện tại theo giờ VN + seed ngày
+function computeCurrentWeather() {
+  const now = new Date();
+  // Giờ VN (UTC+7)
+  const utcHour = now.getUTCHours();
+  const vnHour = (utcHour + 7) % 24;
+  const rnd = seededRandom(getWeatherSeed() + Math.floor(now.getTime() / 3600000)); // đổi mỗi giờ
+
+  // Nhiệt độ dao động theo giờ (thấp nhất 5h, cao nhất 14h)
+  const baseTemp = 24 + 8 * Math.sin((vnHour - 5) * Math.PI / 12);
+  const temp = Math.round(baseTemp + (rnd() - 0.5) * 4);
+
+  // Xác suất thời tiết theo mùa
+  const month = now.getMonth() + 1;
+  const season = month <= 3 ? 'spring' : month <= 6 ? 'summer' : month <= 9 ? 'autumn' : 'winter';
+  const prob = {
+    spring:   { sunny: 0.4, cloudy: 0.3, rainy: 0.25, stormy: 0.05 },
+    summer:   { sunny: 0.55, cloudy: 0.2, rainy: 0.2, stormy: 0.05 },
+    autumn:   { sunny: 0.35, cloudy: 0.35, rainy: 0.25, stormy: 0.05 },
+    winter:   { sunny: 0.3, cloudy: 0.4, rainy: 0.2, stormy: 0.1 }
+  }[season];
+  const r = rnd();
+  let cum = 0, condition = 'sunny';
+  for (const k in prob) { cum += prob[k]; if (r < cum) { condition = k; break; } }
+
+  // Đêm thì chuyển thành night
+  const timeOfDay = (vnHour >= 6 && vnHour < 18) ? 'day' : 'night';
+
+  const humidity = condition === 'rainy' ? 85 + Math.floor(rnd() * 10)
+                  : condition === 'stormy' ? 90 + Math.floor(rnd() * 8)
+                  : condition === 'cloudy' ? 60 + Math.floor(rnd() * 15)
+                  : 45 + Math.floor(rnd() * 20);
+  const wind = condition === 'stormy' ? 25 + Math.floor(rnd() * 15)
+             : condition === 'rainy' ? 12 + Math.floor(rnd() * 8)
+             : 4 + Math.floor(rnd() * 8);
+  const uv = condition === 'sunny' && timeOfDay === 'day' ? 7 + Math.floor(rnd() * 4)
+           : condition === 'cloudy' ? 3 + Math.floor(rnd() * 3)
+           : 1 + Math.floor(rnd() * 2);
+
+  // Tính effect lên game
+  const effects = {
+    grow: condition === 'rainy' ? 130 : condition === 'sunny' && temp < 35 ? 110 : condition === 'stormy' ? 80 : 100,
+    water: condition === 'rainy' ? 100 : condition === 'stormy' ? 100 : condition === 'sunny' && temp > 32 ? 30 : 60,
+    fish: condition === 'rainy' ? 150 : condition === 'cloudy' ? 120 : 70,
+    pest: condition === 'rainy' ? 140 : condition === 'stormy' ? 90 : condition === 'sunny' && temp > 32 ? 150 : 60
+  };
+
+  return { temp, condition, humidity, wind, uv, timeOfDay, season, vnHour, effects };
+}
+
+const WEATHER_INFO = {
+  sunny:  { icon: '☀️', label: 'Nắng', gradient: 'linear-gradient(135deg, #fbbf24, #f59e0b)', color: '#f59e0b' },
+  cloudy: { icon: '⛅', label: 'Có mây', gradient: 'linear-gradient(135deg, #94a3b8, #64748b)', color: '#64748b' },
+  rainy:  { icon: '🌧️', label: 'Mưa', gradient: 'linear-gradient(135deg, #6366f1, #4338ca)', color: '#4338ca' },
+  stormy: { icon: '⛈️', label: 'Dông bão', gradient: 'linear-gradient(135deg, #475569, #1e293b)', color: '#1e293b' }
+};
+
+const SEASON_INFO = {
+  spring: { name: 'Mùa Xuân', icon: '🌸' },
+  summer: { name: 'Mùa Hạ', icon: '☀️' },
+  autumn: { name: 'Mùa Thu', icon: '🍂' },
+  winter: { name: 'Mùa Đông', icon: '❄️' }
+};
+
+function renderWeather() {
+  const w = computeCurrentWeather();
+  weatherState = w;
+  const info = WEATHER_INFO[w.condition];
+  const season = SEASON_INFO[w.season];
+
+  // Cập nhật card chính
+  const card = document.getElementById('weather-card-main');
+  if (card) card.style.background = info.gradient;
+  document.getElementById('weather-temp').textContent = w.temp + '°C';
+  document.getElementById('weather-condition').innerHTML =
+    `${info.icon} <b>${info.label}</b> • ${season.icon} ${season.name}`;
+  document.getElementById('weather-time').textContent =
+    '🕐 ' + String(w.vnHour).padStart(2, '0') + ':' + String(new Date().getMinutes()).padStart(2, '0') + ' (VN)';
+
+  // Scene elements
+  const sun = document.getElementById('weather-sun');
+  const moon = document.getElementById('weather-moon');
+  const cloud1 = document.getElementById('weather-cloud-1');
+  const cloud2 = document.getElementById('weather-cloud-2');
+  const rain = document.getElementById('weather-rain');
+  const stars = document.getElementById('weather-stars');
+
+  // Mặt trời / trăng
+  if (sun) sun.style.opacity = (w.timeOfDay === 'day' && (w.condition === 'sunny' || w.condition === 'cloudy')) ? '1' : '0';
+  if (moon) moon.style.opacity = w.timeOfDay === 'night' ? '1' : '0';
+  // Mây
+  if (cloud1) cloud1.style.opacity = (w.condition === 'cloudy' || w.condition === 'rainy' || w.condition === 'stormy') ? '1' : '0.3';
+  if (cloud2) cloud2.style.opacity = (w.condition === 'rainy' || w.condition === 'stormy') ? '1' : '0';
+  // Mưa
+  if (rain) {
+    rain.style.opacity = (w.condition === 'rainy' || w.condition === 'stormy') ? '1' : '0';
+    rain.style.animationDuration = w.condition === 'stormy' ? '0.4s' : '0.7s';
+  }
+  // Sao
+  if (stars) stars.style.opacity = w.timeOfDay === 'night' ? '1' : '0';
+
+  // Effect bars
+  const eff = w.effects;
+  const effectEls = document.querySelectorAll('.effect-item');
+  effectEls.forEach(el => {
+    const key = el.dataset.effect;
+    const val = eff[key];
+    el.style.setProperty('--val', val + '%');
+    el.classList.toggle('boost', val > 120);
+    el.classList.toggle('warn', key === 'pest' && val > 120);
+  });
+
+  // Tips
+  const tips = {
+    sunny: w.temp > 32 ? '🌡️ Trời nắng nóng! Tưới nước gấp đôi cho cây, thu hoạch sớm rau củ để tránh héo.' :
+                       '☀️ Nắng đẹp! Thích hợp gieo hạt, phơi đất, làm cỏ. Nhớ tưới nước 2 lần/ngày.',
+    cloudy: '⛅ Trời mát! Cây phát triển tốt, thú cưng hoạt bát. Đây là thời điểm lý tưởng để đi câu cá!',
+    rainy: '🌧️ Có mưa! Cây tự tưới nước, tăng trưởng nhanh. Cẩn thận sâu bệnh & ngập úng.',
+    stormy: '⛈️ Dông bão! Hạn chế ra ngoài, thu hoạch khẩn cấp, bảo vệ thú cưng trong nhà.'
+  };
+  const tipEl = document.getElementById('weather-tip-content');
+  if (tipEl) tipEl.innerHTML = '<b>[' + info.label + ']</b> ' + tips[w.condition];
+
+  // Highlight mùa hiện tại
+  document.querySelectorAll('.farming-card').forEach(c => {
+    c.classList.toggle('active-season', c.dataset.season === w.season);
+  });
+
+  renderForecast();
+}
+
+function renderForecast() {
+  const el = document.getElementById('weather-forecast');
+  if (!el) return;
+  const days = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
+  const today = new Date();
+  const baseSeed = getWeatherSeed();
+  let html = '';
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(today);
+    d.setDate(today.getDate() + i);
+    const seed = baseSeed + i * 1000;
+    const rnd = seededRandom(seed);
+    const month = d.getMonth() + 1;
+    const season = month <= 3 ? 'spring' : month <= 6 ? 'summer' : month <= 9 ? 'autumn' : 'winter';
+    const prob = { spring: {sunny:.4,cloudy:.3,rainy:.25,stormy:.05}, summer: {sunny:.55,cloudy:.2,rainy:.2,stormy:.05},
+                   autumn: {sunny:.35,cloudy:.35,rainy:.25,stormy:.05}, winter: {sunny:.3,cloudy:.4,rainy:.2,stormy:.1} }[season];
+    const r = rnd();
+    let cum = 0, cond = 'sunny';
+    for (const k in prob) { cum += prob[k]; if (r < cum) { cond = k; break; } }
+    const baseT = 24 + 8 * Math.sin(2.5);
+    const temp = Math.round(baseT + (rnd() - 0.5) * 6);
+    const info = WEATHER_INFO[cond];
+    const dayName = i === 0 ? 'Hôm nay' : days[d.getDay()] + ' ' + d.getDate() + '/' + (d.getMonth()+1);
+    html += `<div class="forecast-day ${i === 0 ? 'today' : ''}" onclick="showForecastDetail(${i},'${cond}',${temp})">
+      <div class="forecast-name">${dayName}</div>
+      <div class="forecast-icon">${info.icon}</div>
+      <div class="forecast-temp">${temp}°</div>
+      <div class="forecast-cond">${info.label}</div>
+    </div>`;
+  }
+  el.innerHTML = html;
+}
+
+function showForecastDetail(idx, cond, temp) {
+  const info = WEATHER_INFO[cond];
+  showToast(`${info.icon} ${info.label} • ${temp}°C`, 'info');
+}
+
+// Khởi tạo sao
+function initStars() {
+  const el = document.getElementById('weather-stars');
+  if (!el) return;
+  let html = '';
+  for (let i = 0; i < 30; i++) {
+    const x = Math.random() * 100, y = Math.random() * 60;
+    const size = 1 + Math.random() * 2;
+    const delay = Math.random() * 3;
+    html += `<span class="star" style="left:${x}%;top:${y}%;width:${size}px;height:${size}px;animation-delay:${delay}s"></span>`;
+  }
+  el.innerHTML = html;
+}
+
+// Mưa rơi effect
+function initRainDrops() {
+  const el = document.getElementById('weather-rain');
+  if (!el) return;
+  let html = '';
+  for (let i = 0; i < 40; i++) {
+    const x = Math.random() * 100;
+    const delay = Math.random() * 1;
+    const speed = 0.4 + Math.random() * 0.4;
+    html += `<span class="raindrop" style="left:${x}%;animation-delay:${delay}s;animation-duration:${speed}s"></span>`;
+  }
+  el.innerHTML = html;
+}
+
+initStars();
+initRainDrops();
+renderWeather();
+// Cập nhật mỗi phút
+setInterval(renderWeather, 60000);
+
+
+/* ============ READING PROGRESS BAR ============ */
+window.addEventListener('scroll', () => {
+  const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (winScroll / height) * 100;
+  document.getElementById('reading-progress').style.width = scrolled + '%';
+});
+
+/* ============ CURSOR FOLLOW EFFECT ============ */
+const cursorFx = document.getElementById('cursor-fx');
+const cursorEmojis = ['🌱', '🌻', '🌾', '🍃', '🌿', '🌸'];
+let lastCursorTime = 0;
+let cursorVisible = false;
+document.addEventListener('mousemove', (e) => {
+  const now = Date.now();
+  if (!cursorVisible) {
+    cursorFx.style.left = e.clientX + 'px';
+    cursorFx.style.top = e.clientY + 'px';
+    cursorFx.classList.add('show');
+    cursorVisible = true;
+  } else {
+    cursorFx.style.left = e.clientX + 'px';
+    cursorFx.style.top = e.clientY + 'px';
+  }
+  // Thả emoji mỗi 200ms
+  if (now - lastCursorTime > 200) {
+    lastCursorTime = now;
+    const trail = document.createElement('div');
+    trail.className = 'cursor-trail';
+    trail.style.left = e.clientX + 'px';
+    trail.style.top = e.clientY + 'px';
+    trail.style.background = ['#4ade80', '#fbbf24', '#ec4899', '#06b6d4', '#a78bfa'][Math.floor(Math.random() * 5)];
+    trail.style.width = (4 + Math.random() * 6) + 'px';
+    trail.style.height = trail.style.width;
+    document.body.appendChild(trail);
+    setTimeout(() => {
+      trail.style.opacity = '0';
+      trail.style.transform = 'translate(-50%, -50%) scale(2)';
+    }, 100);
+    setTimeout(() => trail.remove(), 600);
+  }
+});
+document.addEventListener('mouseleave', () => {
+  cursorFx.classList.remove('show');
+  cursorVisible = false;
+});
+// Click effect
+document.addEventListener('click', (e) => {
+  for (let i = 0; i < 6; i++) {
+    const particle = document.createElement('div');
+    particle.textContent = cursorEmojis[Math.floor(Math.random() * cursorEmojis.length)];
+    particle.style.cssText = `position:fixed;left:${e.clientX}px;top:${e.clientY}px;font-size:20px;pointer-events:none;z-index:9999;`;
+    document.body.appendChild(particle);
+    const angle = (i / 6) * Math.PI * 2;
+    const dist = 60 + Math.random() * 40;
+    const x = Math.cos(angle) * dist;
+    const y = Math.sin(angle) * dist;
+    particle.animate([
+      { transform: 'translate(0, 0) scale(1) rotate(0deg)', opacity: 1 },
+      { transform: `translate(${x}px, ${y}px) scale(0) rotate(360deg)`, opacity: 0 }
+    ], { duration: 800, easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' });
+    setTimeout(() => particle.remove(), 800);
+  }
+});
+
+/* ============ PWA INSTALL ============ */
+let deferredPrompt = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  // Hiện nút cài đặt
+  const pwaBtn = document.getElementById('pwa-install');
+  if (pwaBtn) pwaBtn.classList.add('show');
+});
+const pwaBtn = document.getElementById('pwa-install');
+if (pwaBtn) {
+  pwaBtn.addEventListener('click', async () => {
+    if (!deferredPrompt) {
+      showToast('💡 Trên Chrome: nhấn Menu (3 chấm) → "Thêm vào màn hình chính"');
+      return;
+    }
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === 'accepted') {
+      showToast('🎉 Đã cài đặt! Tìm biểu tượng trên màn hình chính nhé!');
+    }
+    deferredPrompt = null;
+    pwaBtn.classList.remove('show');
+  });
+}
+
+/* ============ LANGUAGE SWITCHER ============ */
+const translations = {
+  vi: {
+    welcome: 'Chào mừng đến với Nông Trại Online',
+    download: 'Tải APK',
+    play: 'Chơi trên Web',
+    discord: 'Tham gia Discord',
+    features: 'Tính năng',
+    contact: 'Liên hệ Admin'
+  },
+  en: {
+    welcome: 'Welcome to Farm Online',
+    download: 'Download APK',
+    play: 'Play on Web',
+    discord: 'Join Discord',
+    features: 'Features',
+    contact: 'Contact Admin'
+  }
+};
+let currentLang = localStorage.getItem('nt_lang') || 'vi';
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('nt_lang', lang);
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+  // Cập nhật title
+  if (lang === 'en') {
+    document.title = '🌱 Farm Online – Download Free APK';
+    showToast('🇺🇸 Switched to English');
+  } else {
+    document.title = '🌱 Nông Trại Online – Tải APK Miễn Phí';
+    showToast('🇻🇳 Đã chuyển sang Tiếng Việt');
+  }
+}
+window.addEventListener('DOMContentLoaded', () => {
+  const lang = localStorage.getItem('nt_lang');
+  if (lang && lang !== 'vi') {
+    setLang(lang);
+  }
+});
+
+/* ============ NEWS TICKER ============ */
+let tickerPaused = false;
+function toggleTicker() {
+  tickerPaused = !tickerPaused;
+  const track = document.getElementById('news-ticker-track');
+  const btn = document.getElementById('ticker-toggle');
+  if (tickerPaused) {
+    track.style.animationPlayState = 'paused';
+    btn.innerHTML = '▶';
+    btn.classList.add('active');
+  } else {
+    track.style.animationPlayState = 'running';
+    btn.innerHTML = '⏸';
+    btn.classList.remove('active');
+  }
+}
+
+/* ============ SEARCH FEATURE ============ */
+let searchResults = [];
+let searchSelected = 0;
+
+function openSearch() {
+  document.getElementById('search-overlay').classList.add('show');
+  setTimeout(() => document.getElementById('search-input').focus(), 50);
+}
+
+function closeSearch() {
+  document.getElementById('search-overlay').classList.remove('show');
+  document.getElementById('search-input').value = '';
+  clearHighlights();
+}
+
+function quickSearch(q) {
+  document.getElementById('search-input').value = q;
+  doSearch(q);
+}
+
+function doSearch(query) {
+  query = (query || '').trim();
+  const resultsEl = document.getElementById('search-results');
+  const countEl = document.getElementById('search-count');
+  clearHighlights();
+
+  if (query.length < 2) {
+    resultsEl.innerHTML = '<div class="search-empty">🔍<div class="search-empty-text">Gõ ít nhất 2 ký tự để tìm kiếm</div></div>';
+    countEl.textContent = '0';
+    searchResults = [];
+    return;
+  }
+
+  const q = query.toLowerCase();
+  searchResults = [];
+
+  // Tìm trong tất cả các section/heading và text elements
+  const sections = document.querySelectorAll('section, .footer, header');
+  sections.forEach(section => {
+    const sectionTitle = section.querySelector('.section-title, h1, h2, h3');
+    if (!sectionTitle) return;
+    const title = sectionTitle.textContent.trim();
+    const sectionName = title;
+
+    // Lấy text từ section
+    const sectionText = section.textContent.replace(/\s+/g, ' ').trim();
+
+    if (sectionText.toLowerCase().includes(q) || title.toLowerCase().includes(q)) {
+      // Tìm vị trí và lấy snippet
+      const lowerText = sectionText.toLowerCase();
+      const idx = lowerText.indexOf(q);
+      let snippet = '';
+      if (idx >= 0) {
+        const start = Math.max(0, idx - 50);
+        const end = Math.min(sectionText.length, idx + query.length + 100);
+        snippet = (start > 0 ? '...' : '') + sectionText.substring(start, end) + (end < sectionText.length ? '...' : '');
+      } else {
+        snippet = sectionText.substring(0, 150) + (sectionText.length > 150 ? '...' : '');
+      }
+
+      // Highlight match trong snippet
+      const regex = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+      const titleHl = title.replace(regex, '<mark>$1</mark>');
+      const snippetHl = snippet.replace(regex, '<mark>$1</mark>');
+
+      // Lấy icon theo section
+      const icon = getSectionIcon(title);
+
+      searchResults.push({
+        title: titleHl,
+        snippet: snippetHl,
+        section: sectionName,
+        element: section,
+        icon: icon
+      });
+    }
+  });
+
+  // Đếm & hiển thị
+  countEl.textContent = searchResults.length;
+  if (searchResults.length === 0) {
+    resultsEl.innerHTML = '<div class="search-empty">😢<div class="search-empty-text">Không tìm thấy kết quả cho "<b>' + escapeHtml(query) + '</b>"</div></div>';
+    return;
+  }
+
+  resultsEl.innerHTML = searchResults.map((r, i) => `
+    <div class="search-result" data-index="${i}" onclick="goToResult(${i})">
+      <div class="search-result-icon">${r.icon}</div>
+      <div class="search-result-content">
+        <div class="search-result-title">${r.title}</div>
+        <div class="search-result-snippet">${r.snippet}</div>
+        <div class="search-result-section">📍 ${r.section}</div>
+      </div>
+    </div>
+  `).join('');
+
+  searchSelected = 0;
+  highlightSelected();
+}
+
+function getSectionIcon(title) {
+  const t = title.toLowerCase();
+  if (t.includes('apk') || t.includes('tải')) return '📱';
+  if (t.includes('discord')) return '🎮';
+  if (t.includes('liên hệ') || t.includes('admin')) return '👨‍🌾';
+  if (t.includes('ủng hộ') || t.includes('donate')) return '💝';
+  if (t.includes('faq') || t.includes('câu hỏi')) return '❓';
+  if (t.includes('tin tức') || t.includes('news')) return '📰';
+  if (t.includes('feedback') || t.includes('đánh giá')) return '💌';
+  if (t.includes('tính năng')) return '🌾';
+  if (t.includes('khám phá') || t.includes('hình')) return '📸';
+  if (t.includes('xếp hạng')) return '🏆';
+  if (t.includes('hướng dẫn')) return '📖';
+  if (t.includes('hero') || t.includes('nông trại vui')) return '🌻';
+  return '📄';
+}
+
+function goToResult(i) {
+  if (!searchResults[i]) return;
+  closeSearch();
+  setTimeout(() => {
+    const el = searchResults[i].element;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Highlight
+    el.classList.add('search-highlight');
+    setTimeout(() => el.classList.remove('search-highlight'), 3000);
+  }, 100);
+}
+
+function highlightSelected() {
+  document.querySelectorAll('.search-result').forEach((r, i) => {
+    r.style.background = i === searchSelected ? '#dbeafe' : '';
+    r.style.borderLeft = i === searchSelected ? '4px solid #3b82f6' : '4px solid transparent';
+  });
+}
+
+function clearHighlights() {
+  document.querySelectorAll('.search-highlight').forEach(el => el.classList.remove('search-highlight'));
+}
+
+function escapeHtml(s) {
+  return s.replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+}
+
+// Keyboard shortcut: Ctrl+K or Cmd+K
+document.addEventListener('keydown', (e) => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+    e.preventDefault();
+    openSearch();
+  }
+  if (e.key === 'Escape') {
+    const overlay = document.getElementById('search-overlay');
+    if (overlay.classList.contains('show')) closeSearch();
+  }
+  if (document.getElementById('search-overlay').classList.contains('show')) {
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      searchSelected = Math.min(searchResults.length - 1, searchSelected + 1);
+      highlightSelected();
+      document.querySelectorAll('.search-result')[searchSelected]?.scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      searchSelected = Math.max(0, searchSelected - 1);
+      highlightSelected();
+      document.querySelectorAll('.search-result')[searchSelected]?.scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      goToResult(searchSelected);
+    }
+  }
+});
+
+// Stop pulse after first click
+document.getElementById('search-fab')?.addEventListener('click', function() {
+  this.classList.remove('pulse');
+});
+
+/* ============ PWA SERVICE WORKER ============ */
+if ('serviceWorker' in navigator) {
+  const swCode = `
+    const CACHE = 'nongtrai-v1';
+    self.addEventListener('install', e => {
+      e.waitUntil(caches.open(CACHE).then(c => c.addAll(['/'])));
+    });
+    self.addEventListener('fetch', e => {
+      e.respondWith(
+        caches.match(e.request).then(r => r || fetch(e.request).then(response => {
+          if (response.status === 200) {
+            const clone = response.clone();
+            caches.open(CACHE).then(c => c.put(e.request, clone));
+          }
+          return response;
+        }))
+      );
+    });
+  `;
+  const swBlob = new Blob([swCode], { type: 'application/javascript' });
+  const swUrl = URL.createObjectURL(swBlob);
+  navigator.serviceWorker.register(swUrl).catch(() => {});
+}
+
+/* ============ CONSOLE EASTER EGG ============ */
+console.log('%c🌱 Nông Trại Online 🌻', 'font-size:28px;font-weight:bold;color:#2e7d32;text-shadow:0 0 10px #4caf50;');
+console.log('%cMade with ❤️ by Bùi Chí Kiệt', 'color:#ff7043;font-size:14px;font-weight:bold;');
+console.log('%cDiscord: bo1805 | Zalo: 0328680584 | MB Bank: 00180599999998', 'color:#5d4037;font-size:12px;');
+</script>
+
+</body>
+</html>

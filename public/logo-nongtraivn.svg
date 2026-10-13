@@ -1,0 +1,193 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <!-- Sky gradient -->
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#bae6fd;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fef3c7;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Sunflower petals gradient -->
+    <radialGradient id="petalGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#fde047;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#fbbf24;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:1" />
+    </radialGradient>
+
+    <!-- Sunflower center gradient -->
+    <radialGradient id="centerGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#92400e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#451a03;stop-opacity:1" />
+    </radialGradient>
+
+    <!-- Carrot gradient -->
+    <linearGradient id="carrotGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fb923c;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ea580c;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- House roof gradient -->
+    <linearGradient id="roofGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#dc2626;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#991b1b;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- House wall gradient -->
+    <linearGradient id="wallGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#fef3c7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fde68a;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Leaf gradient -->
+    <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#86efac;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16a34a;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Text gradient -->
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#16a34a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#15803d;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Drop shadow -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="0" dy="2" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.3"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background circle (sky) -->
+  <circle cx="100" cy="100" r="98" fill="url(#skyGrad)" stroke="#fbbf24" stroke-width="4"/>
+
+  <!-- Clouds -->
+  <g opacity="0.8">
+    <ellipse cx="40" cy="40" rx="14" ry="6" fill="#fff"/>
+    <ellipse cx="50" cy="38" rx="10" ry="5" fill="#fff"/>
+    <ellipse cx="160" cy="50" rx="12" ry="5" fill="#fff"/>
+  </g>
+
+  <!-- Sun rays (behind sunflower) -->
+  <g transform="translate(100, 80)" opacity="0.4">
+    <g fill="#fcd34d">
+      <polygon points="0,-32 3,-22 -3,-22"/>
+      <polygon points="22,-22 16,-15 11,-19" transform="rotate(45)"/>
+      <polygon points="32,0 22,3 22,-3"/>
+      <polygon points="22,22 19,11 15,16" transform="rotate(45)"/>
+      <polygon points="0,32 3,22 -3,22"/>
+      <polygon points="-22,22 -19,11 -15,16" transform="rotate(45)"/>
+      <polygon points="-32,0 -22,3 -22,-3"/>
+      <polygon points="-22,-22 -19,-11 -15,-16" transform="rotate(45)"/>
+    </g>
+  </g>
+
+  <!-- House (left) -->
+  <g transform="translate(30, 110)" filter="url(#shadow)">
+    <!-- Wall -->
+    <rect x="0" y="15" width="40" height="30" fill="url(#wallGrad)" stroke="#92400e" stroke-width="1.5"/>
+    <!-- Roof -->
+    <polygon points="-4,15 20,0 44,15" fill="url(#roofGrad)" stroke="#7f1d1d" stroke-width="1.5"/>
+    <!-- Door -->
+    <rect x="14" y="28" width="10" height="17" fill="#7c2d12" stroke="#451a03" stroke-width="1"/>
+    <circle cx="22" cy="36" r="0.8" fill="#fde047"/>
+    <!-- Windows -->
+    <rect x="4" y="22" width="7" height="7" fill="#7dd3fc" stroke="#0369a1" stroke-width="1"/>
+    <line x1="7.5" y1="22" x2="7.5" y2="29" stroke="#0369a1" stroke-width="0.8"/>
+    <line x1="4" y1="25.5" x2="11" y2="25.5" stroke="#0369a1" stroke-width="0.8"/>
+    <rect x="28" y="22" width="7" height="7" fill="#7dd3fc" stroke="#0369a1" stroke-width="1"/>
+    <line x1="31.5" y1="22" x2="31.5" y2="29" stroke="#0369a1" stroke-width="0.8"/>
+    <line x1="28" y1="25.5" x2="35" y2="25.5" stroke="#0369a1" stroke-width="0.8"/>
+    <!-- Chimney smoke -->
+    <circle cx="32" cy="-2" r="2" fill="#fff" opacity="0.7"/>
+    <circle cx="34" cy="-7" r="1.5" fill="#fff" opacity="0.6"/>
+    <circle cx="36" cy="-11" r="1" fill="#fff" opacity="0.5"/>
+  </g>
+
+  <!-- Carrot (right) -->
+  <g transform="translate(140, 130)" filter="url(#shadow)">
+    <!-- Carrot body -->
+    <path d="M 0,0 L 18,0 L 9,28 Z" fill="url(#carrotGrad)" stroke="#9a3412" stroke-width="1.2"/>
+    <!-- Carrot lines -->
+    <line x1="6" y1="4" x2="6" y2="10" stroke="#9a3412" stroke-width="0.6"/>
+    <line x1="9" y1="2" x2="9" y2="14" stroke="#9a3412" stroke-width="0.6"/>
+    <line x1="12" y1="4" x2="12" y2="10" stroke="#9a3412" stroke-width="0.6"/>
+    <!-- Leaves -->
+    <ellipse cx="6" cy="-4" rx="2.5" ry="6" fill="url(#leafGrad)" stroke="#15803d" stroke-width="0.8" transform="rotate(-25 6 -4)"/>
+    <ellipse cx="9" cy="-6" rx="2.5" ry="7" fill="url(#leafGrad)" stroke="#15803d" stroke-width="0.8"/>
+    <ellipse cx="12" cy="-4" rx="2.5" ry="6" fill="url(#leafGrad)" stroke="#15803d" stroke-width="0.8" transform="rotate(25 12 -4)"/>
+  </g>
+
+  <!-- Chicken (left bottom) -->
+  <g transform="translate(35, 150)" filter="url(#shadow)">
+    <!-- Body -->
+    <ellipse cx="12" cy="10" rx="11" ry="8" fill="#fff" stroke="#1f2937" stroke-width="1.2"/>
+    <!-- Wing -->
+    <ellipse cx="14" cy="11" rx="6" ry="4" fill="#fef3c7" stroke="#1f2937" stroke-width="0.8"/>
+    <!-- Head -->
+    <circle cx="6" cy="4" r="6" fill="#fff" stroke="#1f2937" stroke-width="1.2"/>
+    <!-- Comb -->
+    <path d="M 2,0 Q 3,-3 5,-2 Q 6,-4 8,-2 Q 9,-3 10,-1" fill="#dc2626" stroke="#7f1d1d" stroke-width="0.8"/>
+    <!-- Beak -->
+    <polygon points="0,4 -3,5 0,6" fill="#f59e0b" stroke="#92400e" stroke-width="0.6"/>
+    <!-- Eye -->
+    <circle cx="4" cy="3" r="1.2" fill="#1f2937"/>
+    <circle cx="4.3" cy="2.7" r="0.4" fill="#fff"/>
+    <!-- Tail -->
+    <path d="M 22,8 Q 28,2 26,12 Q 30,10 24,14" fill="#fef3c7" stroke="#1f2937" stroke-width="0.8"/>
+    <!-- Legs -->
+    <line x1="9" y1="17" x2="9" y2="20" stroke="#f59e0b" stroke-width="1.2"/>
+    <line x1="14" y1="17" x2="14" y2="20" stroke="#f59e0b" stroke-width="1.2"/>
+  </g>
+
+  <!-- Sunflower (center) - the main star -->
+  <g transform="translate(100, 95)" filter="url(#shadow)">
+    <!-- Stem -->
+    <rect x="-2" y="20" width="4" height="40" fill="#16a34a" stroke="#15803d" stroke-width="0.8"/>
+    <!-- Stem leaf -->
+    <ellipse cx="8" cy="40" rx="6" ry="3" fill="url(#leafGrad)" stroke="#15803d" stroke-width="0.8" transform="rotate(30 8 40)"/>
+
+    <!-- Petals (12 petals around) -->
+    <g>
+      <ellipse cx="0" cy="-26" rx="7" ry="13" fill="url(#petalGrad)" stroke="#d97706" stroke-width="1"/>
+      <ellipse cx="0" cy="-26" rx="7" ry="13" fill="url(#petalGrad)" stroke="#d97706" stroke-width="1" transform="rotate(30)"/>
+      <ellipse cx="0" cy="-26" rx="7" ry="13" fill="url(#petalGrad)" stroke="#d97706" stroke-width="1" transform="rotate(60)"/>
+      <ellipse cx="0" cy="-26" rx="7" ry="13" fill="url(#petalGrad)" stroke="#d97706" stroke-width="1" transform="rotate(90)"/>
+      <ellipse cx="0" cy="-26" rx="7" ry="13" fill="url(#petalGrad)" stroke="#d97706" stroke-width="1" transform="rotate(120)"/>
+      <ellipse cx="0" cy="-26" rx="7" ry="13" fill="url(#petalGrad)" stroke="#d97706" stroke-width="1" transform="rotate(150)"/>
+      <ellipse cx="0" cy="-26" rx="7" ry="13" fill="url(#petalGrad)" stroke="#d97706" stroke-width="1" transform="rotate(180)"/>
+      <ellipse cx="0" cy="-26" rx="7" ry="13" fill="url(#petalGrad)" stroke="#d97706" stroke-width="1" transform="rotate(210)"/>
+      <ellipse cx="0" cy="-26" rx="7" ry="13" fill="url(#petalGrad)" stroke="#d97706" stroke-width="1" transform="rotate(240)"/>
+      <ellipse cx="0" cy="-26" rx="7" ry="13" fill="url(#petalGrad)" stroke="#d97706" stroke-width="1" transform="rotate(270)"/>
+      <ellipse cx="0" cy="-26" rx="7" ry="13" fill="url(#petalGrad)" stroke="#d97706" stroke-width="1" transform="rotate(300)"/>
+      <ellipse cx="0" cy="-26" rx="7" ry="13" fill="url(#petalGrad)" stroke="#d97706" stroke-width="1" transform="rotate(330)"/>
+    </g>
+
+    <!-- Center of sunflower (face) -->
+    <circle cx="0" cy="0" r="14" fill="url(#centerGrad)" stroke="#451a03" stroke-width="1.5"/>
+    <!-- Sunflower face - cute smile -->
+    <circle cx="-5" cy="-3" r="1.8" fill="#fff"/>
+    <circle cx="5" cy="-3" r="1.8" fill="#fff"/>
+    <circle cx="-5" cy="-3" r="1" fill="#1f2937"/>
+    <circle cx="5" cy="-3" r="1" fill="#1f2937"/>
+    <circle cx="-4.5" cy="-3.5" r="0.4" fill="#fff"/>
+    <circle cx="5.5" cy="-3.5" r="0.4" fill="#fff"/>
+    <!-- Blush -->
+    <ellipse cx="-7" cy="2" rx="2" ry="1" fill="#fb7185" opacity="0.7"/>
+    <ellipse cx="7" cy="2" rx="2" ry="1" fill="#fb7185" opacity="0.7"/>
+    <!-- Smile -->
+    <path d="M -4,3 Q 0,7 4,3" fill="none" stroke="#1f2937" stroke-width="1.2" stroke-linecap="round"/>
+  </g>
+
+  <!-- Sparkles -->
+  <g fill="#fde047">
+    <path d="M 25,80 L 26,84 L 30,85 L 26,86 L 25,90 L 24,86 L 20,85 L 24,84 Z"/>
+    <path d="M 175,100 L 176,103 L 179,104 L 176,105 L 175,108 L 174,105 L 171,104 L 174,103 Z"/>
+    <path d="M 170,140 L 171,142 L 173,143 L 171,144 L 170,146 L 169,144 L 167,143 L 169,142 Z"/>
+  </g>
+</svg>
